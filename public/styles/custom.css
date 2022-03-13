@@ -1,0 +1,15 @@
+html {
+  background: #fff;
+}
+
+.error {
+  border-color: red;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+.text-small {
+  font-size: smaller;
+}
