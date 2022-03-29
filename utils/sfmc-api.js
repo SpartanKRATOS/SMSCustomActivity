@@ -20,4 +20,11 @@ const getUserInfo = async (accessToken) =>
     headers: { Authorization: accessToken },
   });
 
-module.exports = { getWebAppToken, getUserInfo };
+const getCampaignOfferTypes = async (accessToken) =>
+  axios({
+    method: 'get',
+    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/customobjectdata/key/2E32C105-FCDE-4154-97C7-AE57373D7008/rowset`,
+    headers: { Authorization: accessToken },
+  });
+
+module.exports = { getWebAppToken, getUserInfo, getCampaignOfferTypes };
