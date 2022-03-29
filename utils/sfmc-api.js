@@ -23,7 +23,7 @@ const getUserInfo = async (accessToken) =>
 const getCampaignOfferTypes = async (accessToken) =>
   axios({
     method: 'get',
-    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/customobjectdata/key/2E32C105-FCDE-4154-97C7-AE57373D7008/rowset`,
+    url: `https://www.exacttargetapis.com/data/v1/customobjectdata/key/2E32C105-FCDE-4154-97C7-AE57373D7008/rowset`,
     headers: { Authorization: accessToken },
   });
 
