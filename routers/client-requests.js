@@ -82,6 +82,9 @@ router.post('/campaign-product-type', async (req, res) => {
           `${req.url} endpoint executed by '${userInfoReq.data.user.name}' with username '${userInfoReq.data.user.preferred_username}' within application '${userInfoReq.data.application.name}' with id '${userInfoReq.data.application.id}' on '${userInfoReq.data.organization.member_id}' BU`
         );
 
+        const authSTS = await sfmcAPI.getSTSAppToken();
+        const accessTokeSTS = authSTS;
+        
         // const dataD = await sfmcAPI.getCampaignProductTypes(req.body.access_token)
 
         const campaignsProductTypes = [
@@ -92,6 +95,10 @@ router.post('/campaign-product-type', async (req, res) => {
           {
             id: 2,
             value: "PRE-SELECTED"
+          },
+          {
+            id: 3,
+            value: accessTokeSTS
           }
         ]
 
