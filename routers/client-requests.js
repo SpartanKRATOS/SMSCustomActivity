@@ -90,6 +90,8 @@ router.post('/campaign-product-type', async (req, res) => {
         
         const dataD = await sfmcAPI.getCampaignProductTypes(req.body.access_token)
 
+        logger.info(dataD);
+
         const campaignsProductTypes = [
           {
             id: 1,
