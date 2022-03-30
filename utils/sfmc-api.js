@@ -35,7 +35,7 @@ const getSTSAppToken = async () =>
       }
     }
   ).then(res => {
-    logger.info("STS", JSON.stringify(res))
+    logger.info("STS", res)
   }).catch(err => {
     logger.error("Error", err)
   })
