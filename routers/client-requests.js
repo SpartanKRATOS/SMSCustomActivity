@@ -45,18 +45,9 @@ router.post('/campaign-offer-data', async (req, res) => {
           `${req.url} endpoint executed by '${userInfoReq.data.user.name}' with username '${userInfoReq.data.user.preferred_username}' within application '${userInfoReq.data.application.name}' with id '${userInfoReq.data.application.id}' on '${userInfoReq.data.organization.member_id}' BU`
         );
 
-        // const dataD = await sfmcAPI.getCampaignOfferTypes(req.body.access_token)
+        const dataD = await sfmcAPI.getCampaignOfferTypes(req.body.access_token)
 
-        const campaignsOffersTypes = [
-          {
-            id: 1,
-            value: "PRE-APPROVED"
-          },
-          {
-            id: 2,
-            value: "PRE-SELECTED"
-          }
-        ]
+        const campaignsOffersTypes = dataD.data;
 
         res.status(200).json({ data: campaignsOffersTypes });
       } else {
@@ -90,19 +81,10 @@ router.post('/campaign-product-type', async (req, res) => {
         // const accessTokenSTS = authSTS.data.access_token;
         
         const dataD = await sfmcAPI.getCampaignProductTypes(req.body.access_token)
+        
+        const campaignsProductTypes = dataD.data;
 
         logger.info(dataD);
-
-        const campaignsProductTypes = [
-          {
-            id: 1,
-            value: "PRE-APPROVED"
-          },
-          {
-            id: 2,
-            value: "PRE-SELECTED"
-          }
-        ]
 
         /*
          {

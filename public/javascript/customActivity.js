@@ -6,6 +6,10 @@ let journeyName;
 let journeyVersionNumber;
 let schemaMap = [];
 
+// data coming from DE
+var campaignOffersTypes;
+var campaignProductsTypes;
+
 const buttonSettings = {
   button: 'next',
   text: 'done',
@@ -103,16 +107,16 @@ const manageDropDownSearchBox = () =>{
 connection.on('initActivity', async (data) => {
   // The requestInteraction event provides useful information about the Journey
 
-  const campaignOffersTypes = await makeRequest("campaign-offer-data");
-  const campaignProductsTypes = await makeRequest("campaign-product-type");
+  manageDropDownSearchBox();
+
+  campaignOffersTypes = await makeRequest("campaign-offer-data");
+  campaignProductsTypes = await makeRequest("campaign-product-type");
 
   var campaignOffersTypesDropdown = document.getElementById("retryaCount")
   var campaignProductsTypesDropdown = document.getElementById("retrybCount")
   
   console.log(campaignOffersTypes)
   console.log(campaignProductsTypes)
-
-  manageDropDownSearchBox();
 
   // if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
   // if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
