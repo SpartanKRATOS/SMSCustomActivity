@@ -48,6 +48,7 @@ h3 {
   height: 100%;
   border: none;
   outline: none;
+  background: transparent;
 }
 
 .form__field--input-drop { 
@@ -66,7 +67,7 @@ h3 {
   position: absolute;
   top: 30px;
   left: 0;
-  height: 10px;
-  background:red;
+  background:#fff;
+  box-shadow:0 2px 2px 0 rgb(0,0,0,0.1);
   z-index: 5;
 }
