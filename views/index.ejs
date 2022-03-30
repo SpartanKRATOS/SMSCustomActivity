@@ -27,8 +27,7 @@
         </div>
         <div class="slds-media__body">
           <h2 class="slds-card__header-title">
-            <a class="slds-card__header-link slds-truncate"><span>
-                <%=title %>
+            <a class="slds-card__header-link slds-truncate"><span>LOGGER ACTIVITY
               </span></a>
           </h2>
         </div>
@@ -36,78 +35,97 @@
     </div>
   </article>
 
-  <div class="slds-card__body slds-card__body_inner">
-    <form class="js-settings-form">
-      <div class="slds-form-element">
-        <div id="personalization" class="slds-box slds-m-bottom_medium">
-          <h3>Personalization Strings</h3>
-          <span id="personalizationSpan" class="slds-form-element__span slds-p-top_medium">No personalization
-            attributes</span>
-          <div class="slds-p-top_xx-small">
-            <i>For Contact Data use: {{Contact.Attribute.DENAME.FIELDNAME}}</i>
-          </div>
+  <div class="form">
+    <div class="form__container">
+      <div class="form__field">
+        <div class="form__field--label">
+          <label>Campaign ID</label>
         </div>
-
-        <div id="inArguments" class="slds-box slds-m-bottom_medium">
-          <h3>Activity Payload</h3>
-          <span class="slds-form-element__span slds-p-top_medium">Nothing to configure</span>
-          <!-- Replace the span element with anything that you want to be sent as a part of inArguments array
-                  and append class js-activity-setting -->
-
-          <!-- Comment/Uncomment the div below depending if AMPscript is allowed for use -->
-          <!-- <div class="slds-p-top_xx-small">
-              <i>Use only inline AMPscript placed between [ and ]</i>
-            </div> -->
-        </div>
-
-        <div id="settings" class="slds-box slds-m-bottom_medium">
-          <h3>Activity Settings</h3>
-          <% if (uiSettingsDisplay) { %>
-            <label class="slds-form-element__label slds-p-top_medium">Timeout</label>
-            <input id="timeout" type="number" class="slds-input ca-config" name="timeout"
-              placeholder="Enter value in milliseconds between 1000 and 100000" min="1000" max="100000" step="1" />
-
-            <label class="slds-form-element__label slds-p-top_medium">Retry Count</label>
-            <input id="retryCount" type="number" class="slds-input ca-config" name="retryCount"
-              placeholder="Enter value between 0 and 5" min="0" max="5" step="1" />
-
-            <label class="slds-form-element__label slds-p-top_medium">CAMPAIGN OFFERS TYPES</label>
-            <select id="retryaCount" type="number" class="slds-input ca-config" name="retryaCount"
-              placeholder="Enter value between 0 and 5" min="0" max="5" step="1">
-              <option>SELECT</option>
-              <option>SELECT</option>
-              <option>SELECT</option>
-              <option>SELECT</option>
-            </select>
-
-            <label class="slds-form-element__label slds-p-top_medium">CAMPAIGN PRODUCT TYPES</label>
-            <select id="retrybCount" type="number" class="slds-select ca-config" name="retrybCount"
-              placeholder="Enter value between 0 and 5" min="0" max="5" step="1">
-              <option>SELECT</option>
-              <option>SELECT</option>
-              <option>SELECT</option>
-              <option>SELECT</option>
-            </select>
-
-            <label class="slds-form-element__label slds-p-top_medium">Retry Delay</label>
-            <input id="retryDelay" type="number" class="slds-input ca-config" name="retryDelay"
-              placeholder="Enter value in milliseconds between 0 and 10000" min="0" max="10000" step="1" />
-
-            <label class="slds-form-element__label slds-p-top_medium">Concurrent Requests</label>
-            <input id="concurrentRequests" type="number" class="slds-input ca-config" name="concurrentRequests"
-              placeholder="Enter value between 1 and 10" min="1" max="10" step="1" />
-            <%} else { %>
-              <p>Settings are not allowed on the UI</p>
-              <% } %>
-        </div>
-
-        <div id="outArgs" class="slds-box">
-          <h3>Activity OutArguments</h3>
-          <span id="outArgsSpan" class="slds-form-element__span slds-p-top_medium">No OutArgs</span>
+        <div class="form__field--input">
+          <input type="text" id="campaign-id">
         </div>
       </div>
-    </form>
+      <div class="form__field">
+        <div class="form__field--label">
+          <label>Control Group</label>
+        </div>
+        <div class="form__field--input">
+          <input type="text" id="control-group">
+        </div>
+      </div>
+      <div class="form__field">
+        <div class="form__field--label">
+          <label>Type of offer</label>
+        </div>
+        <div class="form__field--input-drop">
+          <input type="text" id="control-group">
+          <span>icon</span>
+          <div class="form__field--input-search-box">
+            <div>options</div>
+            <div>options</div>
+            <div>options</div>
+            <div>options</div>
+          </div>
+        </div>
+      </div>
+      <div class="form__field">
+        <div class="form__field--label">
+          <label>Campaign name</label>
+        </div>
+        <div class="form__field--input">
+          <input type="text" id="campaign-name">
+        </div>
+      </div>
+      <div class="form__field">
+        <div class="form__field--label">
+          <label>Type of communication</label>
+        </div>
+        <div class="form__field--input-drop">
+          <input type="text" id="control-group">
+          <span>icon</span>
+          <div class="form__field--input-search-box">
+            <div>options</div>
+            <div>options</div>
+            <div>options</div>
+            <div>options</div>
+          </div>
+        </div>
+      </div>
+      <div class="form__field">
+        <div class="form__field--label">
+          <label>Type of product</label>
+        </div>
+        <div class="form__field--input-drop">
+          <input type="text" id="control-group">
+          <span>icon</span>
+          <div class="form__field--input-search-box">
+            <div>options</div>
+            <div>options</div>
+            <div>options</div>
+            <div>options</div>
+          </div>
+        </div>
+      </div>
+      <div class="form__field">
+        <div class="form__field--label">
+          <label>Group campaign</label>
+        </div>
+        <div class="form__field--input-drop">
+          <input type="text" id="control-group">
+          <span>icon</span>
+          <div class="form__field--input-search-box">
+            <div>options</div>
+            <div>options</div>
+            <div>options</div>
+            <div>options</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script></script>
+
 </body>
 
 </html>

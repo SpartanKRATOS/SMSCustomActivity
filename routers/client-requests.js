@@ -101,12 +101,15 @@ router.post('/campaign-product-type', async (req, res) => {
           {
             id: 2,
             value: "PRE-SELECTED"
-          },
-          {
+          }
+        ]
+
+        /*
+         {
             id: 3,
             value: dataD.data
           }
-        ]
+        */
 
         res.status(200).json({ data: campaignsProductTypes });
       } else {
