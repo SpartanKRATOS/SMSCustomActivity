@@ -71,26 +71,6 @@
             <input id="retryCount" type="number" class="slds-input ca-config" name="retryCount"
               placeholder="Enter value between 0 and 5" min="0" max="5" step="1" />
 
-            <label class="slds-form-element__label slds-p-top_medium">CAMPAIGN OFFERS TYPES</label>
-            <select id="retryaCount" class="slds-select ca-config" name="retryaCount"
-              placeholder="Enter value between 0 and 5" min="0" max="5" step="1">
-              <% campaignsOffersTypes.forEach(function(cp){ %>
-                <option value="<%=cp.id %>">
-                  <%=cp.value %>
-                </option>
-                <% }); %>
-            </select>
-
-            <label class="slds-form-element__label slds-p-top_medium">CAMPAIGN PRODUCT TYPES</label>
-            <select id="retrybCount" class="slds-select ca-config" name="retrybCount"
-              placeholder="Enter value between 0 and 5" min="0" max="5" step="1">
-              <% campaignsProductTypes.forEach(function(cp){ %>
-                <option value="<%=cp.id %>">
-                  <%=cp.value %>
-                </option>
-                <% }); %>
-            </select>
-
             <label class="slds-form-element__label slds-p-top_medium">Retry Delay</label>
             <input id="retryDelay" type="number" class="slds-input ca-config" name="retryDelay"
               placeholder="Enter value in milliseconds between 0 and 10000" min="0" max="10000" step="1" />
