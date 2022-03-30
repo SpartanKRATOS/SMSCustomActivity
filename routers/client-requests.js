@@ -44,7 +44,7 @@ router.post('/campaign-offer-data', async (req, res) => {
           `${req.url} endpoint executed by '${userInfoReq.data.user.name}' with username '${userInfoReq.data.user.preferred_username}' within application '${userInfoReq.data.application.name}' with id '${userInfoReq.data.application.id}' on '${userInfoReq.data.organization.member_id}' BU`
         );
 
-        const dataD = await sfmcAPI.getCampaignOfferTypes(req.body.access_token)
+        // const dataD = await sfmcAPI.getCampaignOfferTypes(req.body.access_token)
 
         const campaignsOffersTypes = [
           {
@@ -82,7 +82,7 @@ router.post('/campaign-product-type', async (req, res) => {
           `${req.url} endpoint executed by '${userInfoReq.data.user.name}' with username '${userInfoReq.data.user.preferred_username}' within application '${userInfoReq.data.application.name}' with id '${userInfoReq.data.application.id}' on '${userInfoReq.data.organization.member_id}' BU`
         );
 
-        const dataD = await sfmcAPI.getCampaignProductTypes(req.body.access_token)
+        // const dataD = await sfmcAPI.getCampaignProductTypes(req.body.access_token)
 
         const campaignsProductTypes = [
           {
