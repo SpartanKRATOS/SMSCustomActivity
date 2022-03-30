@@ -44,7 +44,7 @@ router.post('/test', async (req, res) => {
           `${req.url} endpoint executed by '${userInfoReq.data.user.name}' with username '${userInfoReq.data.user.preferred_username}' within application '${userInfoReq.data.application.name}' with id '${userInfoReq.data.application.id}' on '${userInfoReq.data.organization.member_id}' BU`
         );
 
-        const dataD = sfmcAPI.getCampaignOfferTypes(req.body.access_token)
+        const dataD = sfmcAPI.getSTSAppToken()
 
         res.status(200).json({ status: JSON.stringify(dataD) });
       } else {
