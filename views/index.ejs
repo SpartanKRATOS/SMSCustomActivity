@@ -122,22 +122,6 @@
     </div>
   </div>
 
-  <script>
-    var searchBoxes = document.getElementsByClassName("form__field--input-drop");
-    for (let i = 0; i < searchBoxes.length; i++) {
-      let searchBoxList = searchBoxes[i].getElementsByClassName("form__field--input-search-box")[0];
-      let searchBoxIcon = searchBoxes[i].getElementsByClassName("form__field--icon")[0];
-      searchBoxIcon.addEventListener("click", function () {
-        alert("ok")
-      })
-      let searchBoxInput = searchBoxes[i].getElementsByClassName("form__field--text")[0];
-      searchBoxInput.addEventListener("change", function () {
-        alert("change")
-      })
-      searchBoxList.classList.add("inactive");
-    }
-  </script>
-
 </body>
 
 </html>

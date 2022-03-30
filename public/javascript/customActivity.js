@@ -77,6 +77,23 @@ $(window).ready(() => {
   */
 });
 
+
+const manageDropDownSearchBox = () =>{
+    var searchBoxes = document.getElementsByClassName("form__field--input-drop");
+    for (let i = 0; i < searchBoxes.length; i++) {
+      let searchBoxList = searchBoxes[i].getElementsByClassName("form__field--input-search-box")[0];
+      let searchBoxIcon = searchBoxes[i].getElementsByClassName("form__field--icon")[0];
+      searchBoxIcon.addEventListener("click", function () {
+        alert("ok")
+      })
+      let searchBoxInput = searchBoxes[i].getElementsByClassName("form__field--text")[0];
+      searchBoxInput.addEventListener("change", function () {
+        alert("change")
+      })
+      searchBoxList.classList.add("inactive");
+    }
+}
+
 // This logic runs when user opens the UI
 connection.on('initActivity', async (data) => {
   // The requestInteraction event provides useful information about the Journey
@@ -89,6 +106,8 @@ connection.on('initActivity', async (data) => {
   
   console.log(campaignOffersTypes)
   console.log(campaignProductsTypes)
+
+  manageDropDownSearchBox();
 
   // if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
   // if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
