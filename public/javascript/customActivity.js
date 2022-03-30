@@ -48,6 +48,19 @@ const validateForm = function (cb) {
   cb($form);
 };
 
+// map dropdown values
+const mapDropdownValues = (element, options) => {
+  if(option.length) return;
+  
+  element.innerHTML = "";
+  for(let i=0; i<options.length; i++){
+    let option = document.createElement("option");
+    option.value = options[i].id;
+    option.textContent = options[i].value;
+    element.appendChild(option);
+  }
+}
+
 // This logic runs while UI is open
 $(window).ready(() => {
   connection.trigger('ready');
@@ -67,8 +80,11 @@ connection.on('initActivity', async (data) => {
   const campaignOffersTypes = await makeRequest("campaign-offer-data");
   const campaignProductsTypes = await makeRequest("campaign-product-type");
 
-  console.log(JSON.stringify(campaignOffersTypes));
-  console.log(JSON.stringify(campaignProductsTypes));
+  var campaignOffersTypesDropdown = document.getElementById("retryaCount")
+  var campaignProductsTypesDropdown = document.getElementById("retrybCount")
+
+  if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
+  if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
 
   connection.trigger('requestInteraction');
   connection.on('requestedInteraction', (settings) => {
