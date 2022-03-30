@@ -43,10 +43,11 @@ h3 {
   height: 28px;
 }
 
-.form__field--input input {
+.form__field--input input, .form__field--input-drop input  {
   width: 100%;
   height: 100%;
   border: none;
+  outline: none;
 }
 
 .form__field--input-drop { 
