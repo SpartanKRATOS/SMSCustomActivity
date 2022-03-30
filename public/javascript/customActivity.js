@@ -36,6 +36,7 @@ const makeRequest = async (endpoint, pyld = {}, qrprms = '') => {
   return body;
 };
 
+/*
 // Validator function
 const validateForm = function (cb) {
   $form = $('.js-settings-form');
@@ -47,6 +48,7 @@ const validateForm = function (cb) {
 
   cb($form);
 };
+*/
 
 // map dropdown values
 const mapDropdownValues = (element, options) => {
@@ -65,12 +67,14 @@ const mapDropdownValues = (element, options) => {
 $(window).ready(() => {
   connection.trigger('ready');
 
+  /*
   validateForm(function ($form) {
     $form.on('change click keyup input paste', 'input, textarea', function () {
       buttonSettings.enabled = $form.valid();
       connection.trigger('updateButton', buttonSettings);
     });
   });
+  */
 });
 
 // This logic runs when user opens the UI
@@ -111,7 +115,7 @@ connection.on('initActivity', async (data) => {
     });
 
     if (persAttrs) {
-      document.querySelector('#personalizationSpan').innerHTML = persAttrs;
+      // document.querySelector('#personalizationSpan').innerHTML = persAttrs;
     }
   });
 
@@ -127,6 +131,7 @@ connection.on('initActivity', async (data) => {
 
   const inArguments = hasInArguments ? payload.arguments.execute.inArguments : {};
 
+  /*
   $.each(inArguments, function (index, inArgument) {
     $.each(inArgument, function (key, value) {
       const $el = $('#' + key);
@@ -158,13 +163,15 @@ connection.on('initActivity', async (data) => {
       }
     });
   });
+  */
 
   // Iterate over activity settings and display them on UI
   const args = payload.arguments.execute;
-  $.each(args, function (key, value) {
+  
+  /*$.each(args, function (key, value) {
     const $el = $('#' + key);
     $el.val(value);
-  });
+  });*/
 
   // Iterate over outArguments and display them on UI
   const hasOutArguments = Boolean(
@@ -184,17 +191,17 @@ connection.on('initActivity', async (data) => {
     });
   });
 
-  document.querySelector('#outArgsSpan').innerHTML = outArgsStr;
+  // document.querySelector('#outArgsSpan').innerHTML = outArgsStr;
 
-  validateForm(function ($form) {
+  /*validateForm(function ($form) {
     buttonSettings.enabled = $form.valid();
     connection.trigger('updateButton', buttonSettings);
-  });
+  });*/
 });
 
 // This logic runs when user clicks the Done button
 connection.on('clickedNext', () => {
-  if ($form.valid()) {
+  /* if ($form.valid()) { */
     payload.metaData.isConfigured = true;
 
     payload.arguments.execute.inArguments = [
@@ -205,7 +212,7 @@ connection.on('clickedNext', () => {
     ];
 
     // Save activity settings into the payload
-    $('.ca-config').each(function () {
+    /*$('.ca-config').each(function () {
       const id = $(this).attr('id');
       const value = $(this).val();
 
@@ -213,14 +220,17 @@ connection.on('clickedNext', () => {
         payload.arguments.execute[id] = value;
       }
     });
+    */
 
     // Save input values into the payload
+    /*
     $('.js-activity-setting').each(function () {
       const $el = $(this);
 
       let val = $(this).val();
 
       // Replace all AMPscript-like personalization strings with actual Data Binding
+      /*
       if (val.indexOf('%%') > -1 && val.indexOf('%%') < val.lastIndexOf('%%')) {
         while (val.indexOf('%%') > -1 && val.indexOf('%%') < val.lastIndexOf('%%')) {
           const attrName = val.split('%%')[1];
@@ -236,12 +246,14 @@ connection.on('clickedNext', () => {
           val = val.replace(`%%${attrName}%%`, `{{${attrKey}}}`);
         }
       }
+      */
 
-      const setting = {
+      /*const setting = {
         id: $(this).attr('id'),
         value: val,
       };
-
+      */
+      /*
       $.each(payload.arguments.execute.inArguments, function (index, value) {
         if ($el.attr('type') === 'checkbox') {
           if ($el.is(':checked')) {
@@ -253,8 +265,9 @@ connection.on('clickedNext', () => {
           value[setting.id] = setting.value;
         }
       });
+      
     });
-
+    */
     connection.trigger('updateActivity', payload);
-  }
+  /*}*/
 });

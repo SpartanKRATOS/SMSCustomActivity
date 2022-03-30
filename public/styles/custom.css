@@ -80,9 +80,16 @@ h3 {
 
 .form__field--input-drop > span {
   display: block;
-  transform: rotate(-45deg);
+  font-size: 30px;
+  margin-right: 10px;
+  transform: rotate(-90deg);
+  color: #999;
 }
 
 .form__field--input-search-box > div {
   padding: 5px 10px;
+}
+
+.inactive {
+  display: none;
 }

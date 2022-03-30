@@ -19,11 +19,6 @@
   <article class="slds-card">
     <div class="slds-card__header slds-grid">
       <header class="slds-media slds-media_center slds-has-flexi-truncate">
-        <div class="slds-media__figure">
-          <span class="slds-<_container slds-<-standard-contact"><svg class="slds-< slds-<_small" aria-hidden="true">
-              <use xlink:href="/<s/standard-sprite/svg/symbols.svg#custom"></use>
-            </svg></span>
-        </div>
         <div class="slds-media__body">
           <h2 class="slds-card__header-title">
             <a class="slds-card__header-link slds-truncate"><span>LOGGER ACTIVITY
@@ -57,8 +52,8 @@
           <label>Type of offer</label>
         </div>
         <div class="form__field--input-drop">
-          <input type="text" id="control-group">
-          <span>
+          <input class="form__field--text" type="text" id="control-group">
+          <span class="form__field--icon">
             &#8249;</span>
           <div class="form__field--input-search-box">
             <div>options</div>
@@ -81,8 +76,8 @@
           <label>Type of communication</label>
         </div>
         <div class="form__field--input-drop">
-          <input type="text" id="control-group">
-          <span>
+          <input class="form__field--text" type="text" id="control-group">
+          <span class="form__field--icon">
             &#8249;</span>
           <div class="form__field--input-search-box">
             <div>options</div>
@@ -97,8 +92,8 @@
           <label>Type of product</label>
         </div>
         <div class="form__field--input-drop">
-          <input type="text" id="control-group">
-          <span>
+          <input class="form__field--text" type="text" id="control-group">
+          <span class="form__field--icon">
             &#8249;</span>
           <div class="form__field--input-search-box">
             <div>options</div>
@@ -113,8 +108,8 @@
           <label>Group campaign</label>
         </div>
         <div class="form__field--input-drop">
-          <input type="text" id="control-group">
-          <span>
+          <input type="text" class="form__field--text" id="control-group">
+          <span class="form__field--icon">
             &#8249;</span>
           <div class="form__field--input-search-box">
             <div>options</div>
@@ -127,7 +122,21 @@
     </div>
   </div>
 
-  <script></script>
+  <script>
+    var searchBoxes = document.getElementsByClassName("form__field--input-drop");
+    for (let i = 0; i < searchBoxes.length; i++) {
+      let searchBoxList = searchBoxes[i].getElementsByClassName("form__field--input-search-box")[0];
+      let searchBoxIcon = searchBoxes[i].getElementsByClassName("form__field--icon")[0];
+      searchBoxIcon.addEventListener("click", function () {
+        alert("ok")
+      })
+      let searchBoxInput = searchBoxes[i].getElementsByClassName("form__field--text")[0];
+      searchBoxInput.addEventListener("change", function () {
+        alert("change")
+      })
+      searchBoxList.classList.add("inactive");
+    }
+  </script>
 
 </body>
 
