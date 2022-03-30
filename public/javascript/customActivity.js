@@ -50,7 +50,7 @@ const validateForm = function (cb) {
 
 // map dropdown values
 const mapDropdownValues = (element, options) => {
-  if(options.data.length) return;
+  if(!options.data.length) return;
   
   element.innerHTML = "";
   for(let i=0; i<options.data.length; i++){
