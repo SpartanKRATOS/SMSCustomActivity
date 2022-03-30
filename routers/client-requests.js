@@ -57,7 +57,7 @@ router.post('/campaign-offer-data', async (req, res) => {
           }
         ]
 
-        res.status(200).json({ campaignsOffersTypes });
+        res.status(200).json({ data: campaignsOffersTypes });
       } else {
         logger.error(`${req.url} endpoint: userInfo missing`);
         res.status(401).json({ status: 'error' });
@@ -95,7 +95,7 @@ router.post('/campaign-product-type', async (req, res) => {
           }
         ]
 
-        res.status(200).json({ campaignsProductTypes });
+        res.status(200).json({ data: campaignsProductTypes });
       } else {
         logger.error(`${req.url} endpoint: userInfo missing`);
         res.status(401).json({ status: 'error' });
