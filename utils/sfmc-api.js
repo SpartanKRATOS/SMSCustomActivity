@@ -23,11 +23,11 @@ const getUserInfo = async (accessToken) =>
 
 const getSTSAppToken = async () =>
   axios.post(`https://${process.env.SFMC_SUBDOMAIN}.auth.marketingcloudapis.com/v2/token`, {
-      'grant_type': 'client_credentials',
-      'client_id': "06fi09kvmru22lrfgwgkehek",
-      'client_secret': "hwItfvcRJbyFGtW7Dy6mFtJE",
-      'scope': "data_extensions_read data_extensions_write",
-      'account_id': "510000545"
+      "grant_type": "client_credentials",
+      "client_id": "06fi09kvmru22lrfgwgkehek",
+      "client_secret": "hwItfvcRJbyFGtW7Dy6mFtJE",
+      "scope": "data_extensions_read data_extensions_write",
+      "account_id": "510000545"
     },
     {
       headers: {
@@ -43,14 +43,14 @@ const getSTSAppToken = async () =>
 const getCampaignOfferTypes = async (accessToken) =>
   axios({
     method: 'get',
-    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/async/{requestId}/2E32C105-FCDE-4154-97C7-AE57373D7008/results`,
+    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/customobjectdata/key/2E32C105-FCDE-4154-97C7-AE57373D7008/rowset`,
     headers: { Authorization: accessToken },
   });
 
 const getCampaignProductTypes  = async (accessToken) =>
   axios({
     method: 'get',
-    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/async/{requestId}/2E32C105-FCDE-4154-97C7-AE57373D7008/results`,
+    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/customobjectdata/key/2E32C105-FCDE-4154-97C7-AE57373D7008/rowset`,
     headers: { Authorization: accessToken },
   });
 
