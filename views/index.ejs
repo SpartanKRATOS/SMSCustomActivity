@@ -75,8 +75,8 @@
             <select id="retryaCount" class="slds-select ca-config" name="retryaCount"
               placeholder="Enter value between 0 and 5" min="0" max="5" step="1">
               <% campaignsOffersTypes.forEach(function(cp){ %>
-                <option value="<%- cp.id %>">
-                  <%- cp.value %>
+                <option value="<%=cp.id %>">
+                  <%=cp.value %>
                 </option>
                 <% }); %>
             </select>
@@ -85,8 +85,8 @@
             <select id="retrybCount" class="slds-select ca-config" name="retrybCount"
               placeholder="Enter value between 0 and 5" min="0" max="5" step="1">
               <% campaignsProductTypes.forEach(function(cp){ %>
-                <option value="<%- cp.id %>">
-                  <%- cp.value %>
+                <option value="<%=cp.id %>">
+                  <%=cp.value %>
                 </option>
                 <% }); %>
             </select>
