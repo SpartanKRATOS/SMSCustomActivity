@@ -1,123 +1,113 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="/styles/salesforce-lightning-design-system.min.css" />
-    <link rel="stylesheet" href="/styles/custom.css" />
-    <script src="javascript/libs/jquery.min.js"></script>
-    <script src="javascript/libs/jquery.validate.min.js"></script>
-    <script src="javascript/libs/postmonger.js"></script>
-    <script src="javascript/customActivity.js" defer></script>
-    <title><%=title %></title>
-  </head>
-  <body>
-    <input type="hidden" id="access_token" value="<%=accessToken %>"></input>
 
-    <article class="slds-card">
-      <div class="slds-card__header slds-grid">
-        <header class="slds-media slds-media_center slds-has-flexi-truncate">
-          <div class="slds-media__figure">
-            <span class="slds-icon_container slds-icon-standard-contact"
-              ><svg class="slds-icon slds-icon_small" aria-hidden="true">
-                <use xlink:href="/icons/standard-sprite/svg/symbols.svg#custom"></use></svg
-            ></span>
-          </div>
-          <div class="slds-media__body">
-            <h2 class="slds-card__header-title">
-              <a class="slds-card__header-link slds-truncate"><span><%=title %></span></a>
-            </h2>
-          </div>
-        </header>
-      </div>
-    </article>
+<head>
+  <link rel="stylesheet" href="/styles/salesforce-lightning-design-system.min.css" />
+  <link rel="stylesheet" href="/styles/custom.css" />
+  <script src="javascript/libs/jquery.min.js"></script>
+  <script src="javascript/libs/jquery.validate.min.js"></script>
+  <script src="javascript/libs/postmonger.js"></script>
+  <script src="javascript/customActivity.js" defer></script>
+  <title>
+    <%=title %>
+  </title>
+</head>
 
-    <div class="slds-card__body slds-card__body_inner">
-      <form class="js-settings-form">
-        <div class="slds-form-element">
-          <div id="personalization" class="slds-box slds-m-bottom_medium">
-            <h3>Personalization Strings</h3>
-            <span id="personalizationSpan" class="slds-form-element__span slds-p-top_medium"
-              >No personalization attributes</span
-            >
-            <div class="slds-p-top_xx-small">
-              <i>For Contact Data use: {{Contact.Attribute.DENAME.FIELDNAME}}</i>
-            </div>
-          </div>
+<body>
+  <input type="hidden" id="access_token" value="<%=accessToken %>"></input>
 
-          <div id="inArguments" class="slds-box slds-m-bottom_medium">
-            <h3>Activity Payload</h3>
-            <span class="slds-form-element__span slds-p-top_medium">Nothing to configure</span>
-            <!-- Replace the span element with anything that you want to be sent as a part of inArguments array
-                  and append class js-activity-setting -->
-                  
-            <!-- Comment/Uncomment the div below depending if AMPscript is allowed for use -->
-            <!-- <div class="slds-p-top_xx-small">
-              <i>Use only inline AMPscript placed between [ and ]</i>
-            </div> -->
-          </div>
+  <article class="slds-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          <span class="slds-icon_container slds-icon-standard-contact"><svg class="slds-icon slds-icon_small"
+              aria-hidden="true">
+              <use xlink:href="/icons/standard-sprite/svg/symbols.svg#custom"></use>
+            </svg></span>
+        </div>
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">
+            <a class="slds-card__header-link slds-truncate"><span>
+                <%=title %>
+              </span></a>
+          </h2>
+        </div>
+      </header>
+    </div>
+  </article>
 
-          <div id="settings" class="slds-box slds-m-bottom_medium">
-            <h3>Activity Settings</h3>
-            <% if (uiSettingsDisplay) { %>
-            <label class="slds-form-element__label slds-p-top_medium">Timeout</label>
-            <input
-              id="timeout"
-              type="number"
-              class="slds-input ca-config"
-              name="timeout"
-              placeholder="Enter value in milliseconds between 1000 and 100000"
-              min="1000"
-              max="100000"
-              step="1"
-            />
-
-            <label class="slds-form-element__label slds-p-top_medium">Retry Count</label>
-            <input
-              id="retryCount"
-              type="number"
-              class="slds-input ca-config"
-              name="retryCount"
-              placeholder="Enter value between 0 and 5"
-              min="0"
-              max="5"
-              step="1"
-            />
-
-            <label class="slds-form-element__label slds-p-top_medium">Retry Delay</label>
-            <input
-              id="retryDelay"
-              type="number"
-              class="slds-input ca-config"
-              name="retryDelay"
-              placeholder="Enter value in milliseconds between 0 and 10000"
-              min="0"
-              max="10000"
-              step="1"
-            />
-
-            <label class="slds-form-element__label slds-p-top_medium">Concurrent Requests</label>
-            <input
-              id="concurrentRequests"
-              type="number"
-              class="slds-input ca-config"
-              name="concurrentRequests"
-              placeholder="Enter value between 1 and 10"
-              min="1"
-              max="10"
-              step="1"
-            />
-            <%} else { %>
-            <p>Settings are not allowed on the UI</p>
-            <% } %>
-          </div>
-
-          <div id="outArgs" class="slds-box">
-            <h3>Activity OutArguments</h3>
-            <span id="outArgsSpan" class="slds-form-element__span slds-p-top_medium"
-              >No OutArgs</span
-            >
+  <div class="slds-card__body slds-card__body_inner">
+    <form class="js-settings-form">
+      <div class="slds-form-element">
+        <div id="personalization" class="slds-box slds-m-bottom_medium">
+          <h3>Personalization Strings</h3>
+          <span id="personalizationSpan" class="slds-form-element__span slds-p-top_medium">No personalization
+            attributes</span>
+          <div class="slds-p-top_xx-small">
+            <i>For Contact Data use: {{Contact.Attribute.DENAME.FIELDNAME}}</i>
           </div>
         </div>
-      </form>
-    </div>
-  </body>
+
+        <div id="inArguments" class="slds-box slds-m-bottom_medium">
+          <h3>Activity Payload</h3>
+          <span class="slds-form-element__span slds-p-top_medium">Nothing to configure</span>
+          <!-- Replace the span element with anything that you want to be sent as a part of inArguments array
+                  and append class js-activity-setting -->
+
+          <!-- Comment/Uncomment the div below depending if AMPscript is allowed for use -->
+          <!-- <div class="slds-p-top_xx-small">
+              <i>Use only inline AMPscript placed between [ and ]</i>
+            </div> -->
+        </div>
+
+        <div id="settings" class="slds-box slds-m-bottom_medium">
+          <h3>Activity Settings</h3>
+          <% if (uiSettingsDisplay) { %>
+            <label class="slds-form-element__label slds-p-top_medium">Timeout</label>
+            <input id="timeout" type="number" class="slds-input ca-config" name="timeout"
+              placeholder="Enter value in milliseconds between 1000 and 100000" min="1000" max="100000" step="1" />
+
+            <label class="slds-form-element__label slds-p-top_medium">Retry Count</label>
+            <input id="retryCount" type="number" class="slds-input ca-config" name="retryCount"
+              placeholder="Enter value between 0 and 5" min="0" max="5" step="1" />
+
+            <label class="slds-form-element__label slds-p-top_medium">CAMPAIGN OFFERS TYPES</label>
+            <select id="retryaCount" type="number" class="slds-select ca-config" name="retryaCount"
+              placeholder="Enter value between 0 and 5" min="0" max="5" step="1">
+              <option>SELECT</option>
+              <option>SELECT</option>
+              <option>SELECT</option>
+              <option>SELECT</option>
+            </select>
+
+            <label class="slds-form-element__label slds-p-top_medium">CAMPAIGN PRODUCT TYPES</label>
+            <select id="retrybCount" type="number" class="slds-select ca-config" name="retrybCount"
+              placeholder="Enter value between 0 and 5" min="0" max="5" step="1">
+              <option>SELECT</option>
+              <option>SELECT</option>
+              <option>SELECT</option>
+              <option>SELECT</option>
+            </select>
+
+            <label class="slds-form-element__label slds-p-top_medium">Retry Delay</label>
+            <input id="retryDelay" type="number" class="slds-input ca-config" name="retryDelay"
+              placeholder="Enter value in milliseconds between 0 and 10000" min="0" max="10000" step="1" />
+
+            <label class="slds-form-element__label slds-p-top_medium">Concurrent Requests</label>
+            <input id="concurrentRequests" type="number" class="slds-input ca-config" name="concurrentRequests"
+              placeholder="Enter value between 1 and 10" min="1" max="10" step="1" />
+            <%} else { %>
+              <p>Settings are not allowed on the UI</p>
+              <% } %>
+        </div>
+
+        <div id="outArgs" class="slds-box">
+          <h3>Activity OutArguments</h3>
+          <span id="outArgsSpan" class="slds-form-element__span slds-p-top_medium">No OutArgs</span>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
 </html>
