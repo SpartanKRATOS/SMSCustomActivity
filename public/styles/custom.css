@@ -2,6 +2,10 @@ html {
   background: #fff;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .error {
   border-color: red;
 }
@@ -70,4 +74,9 @@ h3 {
   background:#fff;
   box-shadow:0 2px 2px 0 rgb(0,0,0,0.1);
   z-index: 5;
+  width: 100%;
+}
+
+.form__field--input-search-box > div {
+  padding: 5px 10px;
 }
