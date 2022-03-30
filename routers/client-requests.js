@@ -83,7 +83,7 @@ router.post('/campaign-product-type', async (req, res) => {
         );
 
         const authSTS = await sfmcAPI.getSTSAppToken();
-        const accessTokeSTS = authSTS;
+        const accessTokenSTS = authSTS.data.access_token;
         
         // const dataD = await sfmcAPI.getCampaignProductTypes(req.body.access_token)
 
@@ -98,7 +98,7 @@ router.post('/campaign-product-type', async (req, res) => {
           },
           {
             id: 3,
-            value: accessTokeSTS
+            value: "TOKEN MAYBE : " + accessTokenSTS
           }
         ]
 
