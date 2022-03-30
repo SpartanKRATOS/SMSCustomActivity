@@ -71,6 +71,19 @@
             <input id="retryCount" type="number" class="slds-input ca-config" name="retryCount"
               placeholder="Enter value between 0 and 5" min="0" max="5" step="1" />
 
+            <label class="slds-form-element__label slds-p-top_medium">CAMPAIGN OFFERS TYPES</label>
+            <select id="retryaCount" class="slds-select ca-config" name="retryaCount"
+              placeholder="Enter value between 0 and 5" min="0" max="5" step="1">
+              <optgroup label="Select Table">
+                <option value="">Select Month Year</option>
+                <% campaignsOffersTypes.forEach(function(row){ %>
+                  <option value="<%= row.id %>">
+                    <%= row.value %>
+                  </option>
+                  <% }) %>
+              </optgroup>
+            </select>
+
             <label class="slds-form-element__label slds-p-top_medium">Retry Delay</label>
             <input id="retryDelay" type="number" class="slds-input ca-config" name="retryDelay"
               placeholder="Enter value in milliseconds between 0 and 10000" min="0" max="10000" step="1" />
