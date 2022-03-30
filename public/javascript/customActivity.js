@@ -64,11 +64,12 @@ $(window).ready(() => {
 connection.on('initActivity', async (data) => {
   // The requestInteraction event provides useful information about the Journey
 
-  const dataD = await makeRequest("campaign-offer-data");
+  const campaignOffersTypes = await makeRequest("campaign-offer-data");
+  const campaignProductsTypes = await makeRequest("campaign-product-type");
 
-  console.log(JSON.stringify(dataD));
+  console.log(JSON.stringify(campaignOffersTypes));
+  console.log(JSON.stringify(campaignProductsTypes));
 
-  
   connection.trigger('requestInteraction');
   connection.on('requestedInteraction', (settings) => {
     if (settings) {

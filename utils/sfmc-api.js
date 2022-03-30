@@ -47,4 +47,11 @@ const getCampaignOfferTypes = async (accessToken) =>
     headers: { Authorization: accessToken },
   });
 
-module.exports = { getWebAppToken, getUserInfo, getCampaignOfferTypes, getSTSAppToken };
+const getCampaignProductTypes  = async (accessToken) =>
+  axios({
+    method: 'get',
+    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/async/{requestId}/2E32C105-FCDE-4154-97C7-AE57373D7008/results`,
+    headers: { Authorization: accessToken },
+  });
+
+module.exports = { getWebAppToken, getUserInfo, getCampaignOfferTypes, getCampaignProductTypes, getSTSAppToken };
