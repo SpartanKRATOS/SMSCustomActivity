@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sfmcAPI = require('../utils/sfmc-api');
 const logger = require('../utils/logger');
+const { json } = require('express/lib/response');
 
 /**
  * This is a test endpoint. Modify it to fit your needs.
@@ -100,6 +101,10 @@ router.post('/campaign-product-type', async (req, res) => {
           {
             id: 2,
             value: "PRE-SELECTED"
+          },
+          {
+            id: 3,
+            value: JSON.stringify(dataD.data);
           }
         ]
 
