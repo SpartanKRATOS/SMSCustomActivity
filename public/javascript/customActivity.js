@@ -88,7 +88,7 @@ const manageDropDownSearchBox = () =>{
         searchBox.classList.remove("inactive");
       })
       let searchBoxInput = searchBoxes[i].getElementsByClassName("form__field--text")[0];
-      searchBoxInput.addEventListener("change", function (event) {
+      searchBoxInput.addEventListener("keyup", function (event) {
         const value = event.target.value;
         if(value) {
           var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
