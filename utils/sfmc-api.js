@@ -11,6 +11,7 @@ const getWebAppToken = async (authcode, domain) =>
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
       redirect_uri: `https://${domain}/authenticated`,
+      scope: "data_extensions_read data_extensions_write",
     },
   });
 
