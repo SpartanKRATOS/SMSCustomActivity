@@ -82,6 +82,8 @@ router.post('/campaign-product-type', async (req, res) => {
           `${req.url} endpoint executed by '${userInfoReq.data.user.name}' with username '${userInfoReq.data.user.preferred_username}' within application '${userInfoReq.data.application.name}' with id '${userInfoReq.data.application.id}' on '${userInfoReq.data.organization.member_id}' BU`
         );
 
+        logger.info("ACCES TOKN", req.body.access_token);
+
         //const authSTS = await sfmcAPI.getSTSAppToken();
         // const accessTokenSTS = authSTS.data.access_token;
         
@@ -95,10 +97,6 @@ router.post('/campaign-product-type', async (req, res) => {
           {
             id: 2,
             value: "PRE-SELECTED"
-          },
-          {
-            id: 3,
-            value: JSON.stringify(dataD)
           }
         ]
 
