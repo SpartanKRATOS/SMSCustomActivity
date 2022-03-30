@@ -1,4 +1,5 @@
 const axios = require('axios');
+const logger = require('./logger');
 
 const getWebAppToken = async (authcode, domain) =>
   axios({
@@ -25,15 +26,19 @@ const getSTSAppToken = async () =>
       grant_type: 'client_credentials',
       client_id: "06fi09kvmru22lrfgwgkehek",
       client_secret: "hwItfvcRJbyFGtW7Dy6mFtJE",
-      account_id: "510000545",
-      scope: "data_extensions_read data_extensions_write"
+      scope: "data_extensions_read data_extensions_write",
+      account_id: "510000545"
     },
     {
       headers: {
         'Content-Type': 'application/json'
       }
     }
-  );
+  ).then(res => {
+    logger.info("STS", JSON.stringify(res))
+  }).catch(err => {
+    logger.error("Error", err)
+  })
 
 const getCampaignOfferTypes = async (accessToken) =>
   axios({
