@@ -104,7 +104,7 @@ router.post('/campaign-product-type', async (req, res) => {
           },
           {
             id: 3,
-            value: JSON.stringify(dataD.data);
+            value: dataD.data
           }
         ]
 

@@ -83,8 +83,10 @@ connection.on('initActivity', async (data) => {
   var campaignOffersTypesDropdown = document.getElementById("retryaCount")
   var campaignProductsTypesDropdown = document.getElementById("retrybCount")
 
+  console.log(campaignProductsTypes)
+
   if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
-  if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
+  // if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
 
   connection.trigger('requestInteraction');
   connection.on('requestedInteraction', (settings) => {
