@@ -46,6 +46,8 @@ router.post('/test', async (req, res) => {
 
         const dataD = await sfmcAPI.getSTSAppToken()
 
+        logger.info(dataD.access_token)
+
         res.status(200).json({ status: "TEST: " + dataD.access_token });
       } else {
         logger.error(`${req.url} endpoint: userInfo missing`);
