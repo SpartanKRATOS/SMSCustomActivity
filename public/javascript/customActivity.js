@@ -83,12 +83,17 @@ const manageDropDownSearchBox = () =>{
     for (let i = 0; i < searchBoxes.length; i++) {
       let searchBoxList = searchBoxes[i].getElementsByClassName("form__field--input-search-box")[0];
       let searchBoxIcon = searchBoxes[i].getElementsByClassName("form__field--icon")[0];
-      searchBoxIcon.addEventListener("click", function () {
-        alert("ok")
+      searchBoxIcon.addEventListener("click", function (event) {
+        var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+        searchBox.classList.remove("inactive");
       })
       let searchBoxInput = searchBoxes[i].getElementsByClassName("form__field--text")[0];
-      searchBoxInput.addEventListener("change", function () {
-        alert("change")
+      searchBoxInput.addEventListener("change", function (event) {
+        const value = event.target.value;
+        if(value) {
+          var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+          searchBox.classList.remove("inactive");
+        }
       })
       searchBoxList.classList.add("inactive");
     }
