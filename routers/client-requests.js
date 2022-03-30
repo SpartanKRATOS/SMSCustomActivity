@@ -47,7 +47,7 @@ router.post('/campaign-offer-data', async (req, res) => {
 
         const dataD = await sfmcAPI.getCampaignOfferTypes(req.body.access_token)
 
-        const campaignsOffersTypes = dataD.data;
+        const campaignsOffersTypes = dataD.data.items.values;
 
         res.status(200).json({ data: campaignsOffersTypes });
       } else {
@@ -82,7 +82,7 @@ router.post('/campaign-product-type', async (req, res) => {
         
         const dataD = await sfmcAPI.getCampaignProductTypes(req.body.access_token)
         
-        const campaignsProductTypes = dataD.data;
+        const campaignsProductTypes = dataD.data.items.values;
 
         logger.info(dataD);
 
