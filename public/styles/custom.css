@@ -78,7 +78,7 @@ h3 {
   width: 100%;
 }
 
-.form__field--input-drop span {
+.form__field--input-drop > span {
   display: block;
   transform: rotate(-45deg);
 }
