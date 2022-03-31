@@ -109,6 +109,13 @@ $(window).ready(() => {
   */
 });
 
+const hideSearchBoxes = () => {
+  var searchBoxes = document.getElementsByClassName("form__field--input-search-box");
+  for(let i = 0; i<searchBoxes.length; i++){
+    searchBoxes[i].classList.add("inactive")
+  }
+}
+ 
 
 const manageDropDownSearchBox = () =>{
     var searchBoxes = document.getElementsByClassName("form__field--input-drop");
@@ -125,6 +132,7 @@ const manageDropDownSearchBox = () =>{
           var groupCampaignElement = document.getElementById("communication-type");
           mapDropdownValues(groupCampaignElement, campaignCommunicationsTypes)
           var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+          hideSearchBoxes();
           searchBox.classList.remove("inactive");
           return;
         }
@@ -133,6 +141,7 @@ const manageDropDownSearchBox = () =>{
           var groupCampaignElement = document.getElementById("group-campaign");
           mapDropdownValues(groupCampaignElement, groupCampaign)
           var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+          hideSearchBoxes();
           searchBox.classList.remove("inactive");
           return;
         }
@@ -147,6 +156,7 @@ const manageDropDownSearchBox = () =>{
         if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
 
         var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+        hideSearchBoxes();
         searchBox.classList.remove("inactive");
 
       })
@@ -188,7 +198,7 @@ const manageDropDownSearchBox = () =>{
 
               searchBox.appendChild(option);
             }
-
+            hideSearchBoxes();
             searchBox.classList.remove("inactive");
           }
         })
