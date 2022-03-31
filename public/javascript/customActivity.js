@@ -146,6 +146,9 @@ const manageDropDownSearchBox = () =>{
         if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
         if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
 
+        var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+        searchBox.classList.remove("inactive");
+
       })
 
       let searchBoxInput = searchBoxes[i].getElementsByClassName("form__field--text")[0];
