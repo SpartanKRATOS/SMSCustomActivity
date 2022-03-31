@@ -15,8 +15,12 @@ router.post('/test', async (req, res) => {
         logger.info(
           `${req.url} endpoint executed by '${userInfoReq.data.user.name}' with username '${userInfoReq.data.user.preferred_username}' within application '${userInfoReq.data.application.name}' with id '${userInfoReq.data.application.id}' on '${userInfoReq.data.organization.member_id}' BU`
         );
+        
+        const tkn = await sfmcAPI.getSTSAppToken();
+        logger.info("STS tkn")
+        logger.info(tkn.access_token);
 
-        res.status(200).json({ status: 'ok' });
+        res.status(200).json({ status: tkn.access_token + " : is the token" });
       } else {
         logger.error(`${req.url} endpoint: userInfo missing`);
         res.status(401).json({ status: 'error' });
@@ -80,11 +84,6 @@ router.post('/campaign-product-type', async (req, res) => {
         const dataD = await sfmcAPI.getCampaignProductTypes(req.body.access_token)
         
         const campaignsProductTypes = dataD.data.items;
-
-        
-        const tkn = await sfmcAPI.getSTSAppToken();
-        logger.info("STS tkn")
-        logger.info(tkn.access_token);
 
         /*
          {

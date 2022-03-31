@@ -35,11 +35,7 @@ const getSTSAppToken = async () =>
         'Content-Type': 'application/json'
       }
     }
-  ).then(res => {
-    logger.info("STS", res)
-  }).catch(err => {
-    logger.error("Error", err)
-  })
+  )
 
 const getCampaignOfferTypes = async (accessToken) =>
   axios({

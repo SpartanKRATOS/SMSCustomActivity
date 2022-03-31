@@ -217,6 +217,9 @@ connection.on('initActivity', async (data) => {
 
   manageDropDownSearchBox();
 
+  let test = await makeRequest("test");
+  console.log(test);
+  
   campaignOffersTypes = await makeRequest("campaign-offer-data");
   campaignProductsTypes = await makeRequest("campaign-product-type");
 
