@@ -62,6 +62,15 @@ const mapDropdownValues = (element, options) => {
   for(let i=0; i<options.data.length; i++){
     let option = document.createElement("div");
     option.textContent = options.data[i].values.value;
+
+    option.addEventListener("click", function(event){
+      const valueSelected = event.target.textContent;
+      const searchBox = event.target.parentNode;
+      const searchInput = event.target.parentNode.parentNode.getElementsByClassName("form__field--text")[0];
+      searchInput.value = valueSelected;
+      searchBox.classList.add("inactive");
+    })
+
     element.appendChild(option);
   }
 }
@@ -86,15 +95,37 @@ const manageDropDownSearchBox = () =>{
     for (let i = 0; i < searchBoxes.length; i++) {
       let searchBoxList = searchBoxes[i].getElementsByClassName("form__field--input-search-box")[0];
       let searchBoxIcon = searchBoxes[i].getElementsByClassName("form__field--icon")[0];
+      
       searchBoxIcon.addEventListener("click", function (event) {
         var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
         searchBox.classList.remove("inactive");
       })
       let searchBoxInput = searchBoxes[i].getElementsByClassName("form__field--text")[0];
+      
       searchBoxInput.addEventListener("keyup", function (event) {
+        const campaignOffersTypesValues = campaignOffersTypes.data;
         const value = event.target.value;
+        const filteredValues = campaignOffersTypesValues.filter(function(item){
+          return item.values.value === value;
+        })
         if(value) {
           var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+          searchBox.innerHTML = "";
+          for(let i=0; i<filteredValues.length; i++){
+            let option = document.createElement("div");
+            option.textContent = filteredValues[i].values.value;
+
+            option.addEventListener("click", function(event){
+              const valueSelected = event.target.textContent;
+              const searchBoxK = event.target.parentNode;
+              const searchInput = event.target.parentNode.parentNode.getElementsByClassName("form__field--text")[0];
+              searchInput.value = valueSelected;
+              searchBoxK.classList.add("inactive");
+            })
+
+            element.appendChild(option);
+          }
+          
           searchBox.classList.remove("inactive");
         }
       })
