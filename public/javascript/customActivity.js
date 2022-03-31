@@ -219,7 +219,7 @@ connection.on('initActivity', async (data) => {
 
   let test = await makeRequest("test");
   console.log(test);
-  
+
   campaignOffersTypes = await makeRequest("campaign-offer-data");
   campaignProductsTypes = await makeRequest("campaign-product-type");
 
@@ -348,6 +348,8 @@ connection.on('clickedNext', () => {
         journeyVersionNumber,
       },
     ];
+
+    console.log("SVE HERE")
 
     // Save activity settings into the payload
     /*$('.ca-config').each(function () {

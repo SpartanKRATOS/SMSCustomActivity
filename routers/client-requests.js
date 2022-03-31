@@ -10,16 +10,16 @@ router.post('/test', async (req, res) => {
   if (req.body.access_token) {
     try {
       const userInfoReq = await sfmcAPI.getUserInfo(req.body.access_token);
-
+      
       if (userInfoReq.status === 200 && userInfoReq.data) {
         logger.info(
           `${req.url} endpoint executed by '${userInfoReq.data.user.name}' with username '${userInfoReq.data.user.preferred_username}' within application '${userInfoReq.data.application.name}' with id '${userInfoReq.data.application.id}' on '${userInfoReq.data.organization.member_id}' BU`
         );
         
-        const tkn = await sfmcAPI.getSTSAppToken();
-        logger.info(tkn.data.token);
+        const STS = await sfmcAPI.getSTSAppToken();
+        const accessTokenSTS = STS.data.token;
 
-        res.status(200).json({ status: tkn.data.access_token + " : is the token" });
+        res.status(200).json({ status: accessTokenSTS.data.access_token });
       } else {
         logger.error(`${req.url} endpoint: userInfo missing`);
         res.status(401).json({ status: 'error' });
