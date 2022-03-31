@@ -156,7 +156,7 @@ const manageDropDownSearchBox = () =>{
       // dropdownHasConstantValues
       // form__field--input-search-box
 
-      if(dropdownHasConstantValues){
+      if(!dropdownHasConstantValues){
         
         searchBoxInput.addEventListener("keyup", function (event) {
           
