@@ -170,10 +170,11 @@ const manageDropDownSearchBox = () =>{
         
         searchBoxInput.addEventListener("keyup", function (event) {
           
-          const campaignOffersTypesValues = campaignOffersTypes.data;
+          const offersOrProducts = event.target.id === "types-of-products-k" ? "PRODUCTS":"OFFERS";
+          const mappedData = offersOrProducts === "OFFERS" ? campaignOffersTypes.data : campaignProductsTypes.data;
 
           const value = event.target.value;
-          const filteredValues = campaignOffersTypesValues.filter(function(item){
+          const filteredValues = mappedData.filter(function(item){
             return item.values.value.toLowerCase().startsWith(value.toLowerCase());
           })
           
