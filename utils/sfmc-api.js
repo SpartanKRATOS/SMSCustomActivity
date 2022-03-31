@@ -27,7 +27,7 @@ const getSTSAppToken = async () =>
       "grant_type": "client_credentials",
       "client_id": "06fi09kvmru22lrfgwgkehek",
       "client_secret": "hwItfvcRJbyFGtW7Dy6mFtJE",
-      "scope": "data_extensions_read data_extensions_write",
+      "scope": "data_extensions_write",
       "account_id": "510000545"
     },
     {

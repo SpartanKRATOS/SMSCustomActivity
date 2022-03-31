@@ -202,6 +202,9 @@ const manageDropDownSearchBox = () =>{
             hideSearchBoxes();
             searchBox.classList.remove("inactive");
           }
+          else {
+            searchBox.classList.remove("inactive");
+          }
         })
       }
       searchBoxList.classList.add("inactive");
@@ -297,7 +300,6 @@ connection.on('initActivity', async (data) => {
     });
   });
   */
-
   // Iterate over activity settings and display them on UI
   const args = payload.arguments.execute;
   
