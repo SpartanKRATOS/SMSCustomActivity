@@ -60,9 +60,8 @@ const mapDropdownValues = (element, options) => {
   
   element.innerHTML = "";
   for(let i=0; i<options.data.length; i++){
-    let option = document.createElement("option");
-    option.value = options.data[i].id;
-    option.textContent = options.data[i].value;
+    let option = document.createElement("div");
+    option.textContent = options.data[i].values.value;
     element.appendChild(option);
   }
 }
@@ -112,14 +111,14 @@ connection.on('initActivity', async (data) => {
   campaignOffersTypes = await makeRequest("campaign-offer-data");
   campaignProductsTypes = await makeRequest("campaign-product-type");
 
-  var campaignOffersTypesDropdown = document.getElementById("retryaCount")
-  var campaignProductsTypesDropdown = document.getElementById("retrybCount")
+  var campaignOffersTypesDropdown = document.getElementById("types-of-offers")
+  var campaignProductsTypesDropdown = document.getElementById("types-of-products")
   
   console.log(campaignOffersTypes)
   console.log(campaignProductsTypes)
 
-  // if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
-  // if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
+  if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
+  if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
 
   connection.trigger('requestInteraction');
   connection.on('requestedInteraction', (settings) => {

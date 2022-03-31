@@ -84,6 +84,7 @@ h3 {
   margin-right: 10px;
   transform: rotate(-90deg);
   color: #999;
+  cursor: pointer;
 }
 
 .form__field--input-search-box > div {
