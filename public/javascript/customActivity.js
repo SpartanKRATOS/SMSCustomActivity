@@ -74,6 +74,51 @@ const validateForm = function (cb) {
 };
 */
 
+// check if form values are ccurate
+/*
+const getFormValues = () => {
+  const cmpId = document.getElementById("campaign-id").value;
+  const cmpControlGroup = document.getElementById("control-group").value;
+  const cmpTypeOffer = document.getElementById("types-of-offers-k").value;
+  const cmpName = document.getElementById("campaign-name").value;
+  const cmpCommunictionType = document.getElementById("communication-type-k").value;
+  const cmpProductType = document.getElementById("types-of-products-k").value;
+  const cmpGroupCmp = document.getElementById("group-campaign-k").value;
+
+  const notEmptyOrUndefined = (value) => {
+    return value !== "" && value !== undefined && value !== null
+  }
+
+  return {
+    isValid: notEmptyOrUndefined(cmpId) && notEmptyOrUndefined(cmpControlGroup) && notEmptyOrUndefined(cmpTypeOffer) && notEmptyOrUndefined(cmpName) && notEmptyOrUndefined(cmpCommunictionType) && notEmptyOrUndefined(cmpProductType) && notEmptyOrUndefined(cmpGroupCmp),
+    payload: {
+      cmpId,
+      cmpControlGroup,
+      cmpTypeOffer,
+      cmpName,
+      cmpCommunictionType,
+      cmpProductType,
+      cmpGroupCmp
+    }
+  }
+}
+*/
+/*
+const mapValuesinUI = (map) => {
+
+  const { campaignId, campaignControlGroup, campaignOffersType, campaignName, campaignCommunicationsType, campaignProductsType, campaignGroup } = map;
+  
+  document.getElementById("campaign-id").value = campaignId;
+  document.getElementById("control-group").value = campaignControlGroup;
+  document.getElementById("types-of-offers-k").value = campaignOffersType;
+  document.getElementById("campaign-name").value = campaignName;
+  document.getElementById("communication-type-k").value = campaignCommunicationsType;
+  document.getElementById("types-of-products-k").value = campaignProductsType;
+  document.getElementById("group-campaign-k").value = campaignGroup;
+
+}
+*/
+
 // map dropdown values
 const mapDropdownValues = (element, options) => {
   if(!options.data.length) return;
@@ -217,8 +262,8 @@ connection.on('initActivity', async (data) => {
 
   manageDropDownSearchBox();
 
-  let test = await makeRequest("test");
-  console.log(test);
+  //let test = await makeRequest("test");
+  // console.log(test);
 
   campaignOffersTypes = await makeRequest("campaign-offer-data");
   campaignProductsTypes = await makeRequest("campaign-product-type");
@@ -269,6 +314,9 @@ connection.on('initActivity', async (data) => {
   );
 
   const inArguments = hasInArguments ? payload.arguments.execute.inArguments : {};
+  
+  // iterate over inArguments & display already selected values in the UI
+  // if(hasInArguments) mapValuesinUI(inArguments[0]);
 
   /*
   $.each(inArguments, function (index, inArgument) {
@@ -339,17 +387,25 @@ connection.on('initActivity', async (data) => {
 
 // This logic runs when user clicks the Done button
 connection.on('clickedNext', () => {
-  /* if ($form.valid()) { */
+
+  /*
+  if (getFormValues().isValid) {
+
     payload.metaData.isConfigured = true;
 
     payload.arguments.execute.inArguments = [
       {
         journeyName,
         journeyVersionNumber,
+        campaignId: getFormValues().payload.cmpId,
+        campaignName: getFormValues().payload.cmpName,
+        campaignControlGroup: getFormValues().payload.cmpControlGroup,
+        campaignOffersType: getFormValues().payload.cmpTypeOffer,
+        campaignProductsType: getFormValues().payload.cmpProductType,
+        campaignCommunicationsType: getFormValues().payload.cmpCommunictionType,
+        campaignGroup: getFormValues().payload.cmpGroupCmp
       },
     ];
-
-    console.log("SVE HERE")
 
     // Save activity settings into the payload
     /*$('.ca-config').each(function () {
@@ -407,7 +463,8 @@ connection.on('clickedNext', () => {
       });
       
     });
-    */
+    
     connection.trigger('updateActivity', payload);
-  /*}*/
+  }
+  */
 });
