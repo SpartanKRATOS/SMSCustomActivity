@@ -18,7 +18,7 @@ router.post('/test', async (req, res) => {
         
         const tkn = await sfmcAPI.getSTSAppToken();
         logger.info("STS tkn")
-        logger.info(tkn.access_token);
+        logger.info(tkn.data);
 
         res.status(200).json({ status: tkn.access_token + " : is the token" });
       } else {
