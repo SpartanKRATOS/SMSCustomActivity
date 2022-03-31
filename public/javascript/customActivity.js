@@ -75,7 +75,7 @@ const validateForm = function (cb) {
 */
 
 // check if form values are ccurate
-/*
+
 const getFormValues = () => {
   const cmpId = document.getElementById("campaign-id").value;
   const cmpControlGroup = document.getElementById("control-group").value;
@@ -102,8 +102,8 @@ const getFormValues = () => {
     }
   }
 }
-*/
-/*
+
+
 const mapValuesinUI = (map) => {
 
   const { campaignId, campaignControlGroup, campaignOffersType, campaignName, campaignCommunicationsType, campaignProductsType, campaignGroup } = map;
@@ -117,7 +117,7 @@ const mapValuesinUI = (map) => {
   document.getElementById("group-campaign-k").value = campaignGroup;
 
 }
-*/
+
 
 // map dropdown values
 const mapDropdownValues = (element, options) => {
