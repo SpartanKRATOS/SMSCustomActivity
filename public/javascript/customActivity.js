@@ -340,6 +340,7 @@ connection.on('initActivity', async (data) => {
 // This logic runs when user clicks the Done button
 connection.on('clickedNext', () => {
   /* if ($form.valid()) { */
+    console.log(payload)
     payload.metaData.isConfigured = true;
 
     payload.arguments.execute.inArguments = [
