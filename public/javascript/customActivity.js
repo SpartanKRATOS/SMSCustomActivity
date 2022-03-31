@@ -310,7 +310,7 @@ connection.on('initActivity', async (data) => {
   const inArguments = hasInArguments ? payload.arguments.execute.inArguments : {};
   
   // iterate over inArguments & display already selected values in the UI
-  // if(hasInArguments) mapValuesinUI(inArguments[0]);
+  if(hasInArguments) mapValuesinUI(inArguments[0]);
 
   /*
   $.each(inArguments, function (index, inArgument) {
