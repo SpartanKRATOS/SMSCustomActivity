@@ -222,9 +222,6 @@ const manageDropDownSearchBox = () =>{
           const filteredValues = mappedData.filter(function(item){
             return item.values.value.toLowerCase().startsWith(value.toLowerCase());
           })
-          
-          console.log("Filtered campaignOffersTypesValues by " + value);
-          console.log(filteredValues);
 
           if(value) {
             var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
@@ -245,9 +242,6 @@ const manageDropDownSearchBox = () =>{
               searchBox.appendChild(option);
             }
             hideSearchBoxes();
-            searchBox.classList.remove("inactive");
-          }
-          else {
             searchBox.classList.remove("inactive");
           }
         })
