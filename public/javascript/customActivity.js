@@ -97,6 +97,15 @@ const manageDropDownSearchBox = () =>{
       let searchBoxIcon = searchBoxes[i].getElementsByClassName("form__field--icon")[0];
       
       searchBoxIcon.addEventListener("click", function (event) {
+        var campaignOffersTypesDropdown = document.getElementById("types-of-offers")
+        var campaignProductsTypesDropdown = document.getElementById("types-of-products")
+        
+        console.log(campaignOffersTypes)
+        console.log(campaignProductsTypes)
+
+        if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
+        if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
+        
         var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
         searchBox.classList.remove("inactive");
       })
@@ -108,7 +117,7 @@ const manageDropDownSearchBox = () =>{
         console.log(campaignOffersTypesValues)
         const value = event.target.value;
         const filteredValues = campaignOffersTypesValues.filter(function(item){
-          return item.values.value.includes(value);
+          return item.values.value.startsWith(value);
         })
         
         console.log("Filtered campaignOffersTypesValues by " + value);
@@ -117,6 +126,7 @@ const manageDropDownSearchBox = () =>{
         if(value) {
           var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
           searchBox.innerHTML = "";
+
           for(let i=0; i<filteredValues.length; i++){
             let option = document.createElement("div");
             option.textContent = filteredValues[i].values.value;
