@@ -45,10 +45,6 @@ router.post('/campaign-offer-data', async (req, res) => {
           `${req.url} endpoint executed by '${userInfoReq.data.user.name}' with username '${userInfoReq.data.user.preferred_username}' within application '${userInfoReq.data.application.name}' with id '${userInfoReq.data.application.id}' on '${userInfoReq.data.organization.member_id}' BU`
         );
 
-        const tkn = await sfmcAPI.getSTSAppToken();
-        logger.info("STS tkn")
-        logger.info(tkn);
-
         const dataD = await sfmcAPI.getCampaignOfferTypes(req.body.access_token)
 
         const campaignsOffersTypes = dataD.data.items;
@@ -78,9 +74,6 @@ router.post('/campaign-product-type', async (req, res) => {
           `${req.url} endpoint executed by '${userInfoReq.data.user.name}' with username '${userInfoReq.data.user.preferred_username}' within application '${userInfoReq.data.application.name}' with id '${userInfoReq.data.application.id}' on '${userInfoReq.data.organization.member_id}' BU`
         );
 
-        logger.info("ACCES TOKEN");
-        logger.info(req.body.access_token);
-
         //const authSTS = await sfmcAPI.getSTSAppToken();
         // const accessTokenSTS = authSTS.data.access_token;
         
@@ -88,7 +81,10 @@ router.post('/campaign-product-type', async (req, res) => {
         
         const campaignsProductTypes = dataD.data.items;
 
-        logger.info(dataD);
+        
+        const tkn = await sfmcAPI.getSTSAppToken();
+        logger.info("STS tkn")
+        logger.info(tkn.access_token);
 
         /*
          {
