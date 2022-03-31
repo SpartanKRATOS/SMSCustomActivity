@@ -46,7 +46,8 @@ router.post('/campaign-offer-data', async (req, res) => {
         );
 
         const dataD = await sfmcAPI.getCampaignOfferTypes(req.body.access_token)
-
+        logger.info(dataD);
+        
         const campaignsOffersTypes = dataD.data.items;
 
         res.status(200).json({ data: campaignsOffersTypes });

@@ -44,14 +44,14 @@ const getSTSAppToken = async () =>
 const getCampaignOfferTypes = async (accessToken) =>
   axios({
     method: 'get',
-    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/customobjectdata/key/2E32C105-FCDE-4154-97C7-AE57373D7008/rowset`,
+    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/customobjectdata/key/3122D19A-435E-451C-9CCE-3C1EE28F2869/rowset`,
     headers: { Authorization: accessToken },
   });
 
 const getCampaignProductTypes  = async (accessToken) =>
   axios({
     method: 'get',
-    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/customobjectdata/key/2E32C105-FCDE-4154-97C7-AE57373D7008/rowset`,
+    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/customobjectdata/key/5CCEC2D1-D240-4729-B979-62573647E3D3/rowset`,
     headers: { Authorization: accessToken },
   });
 

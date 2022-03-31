@@ -105,7 +105,7 @@ const manageDropDownSearchBox = () =>{
 
         if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
         if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
-        
+
         var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
         searchBox.classList.remove("inactive");
       })
@@ -113,8 +113,8 @@ const manageDropDownSearchBox = () =>{
       
       searchBoxInput.addEventListener("keyup", function (event) {
         const campaignOffersTypesValues = campaignOffersTypes.data;
-        console.log("campaignOffersTypesValues")
-        console.log(campaignOffersTypesValues)
+        console.log("campaignOffersTypesValues");
+        console.log(campaignOffersTypesValues);
         const value = event.target.value;
         const filteredValues = campaignOffersTypesValues.filter(function(item){
           return item.values.value.startsWith(value);
