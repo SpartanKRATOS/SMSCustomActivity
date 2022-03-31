@@ -112,6 +112,7 @@ const manageDropDownSearchBox = () =>{
         })
         
         console.log("Filtered campaignOffersTypesValues by " + value);
+        console.log(filteredValues);
 
         if(value) {
           var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
