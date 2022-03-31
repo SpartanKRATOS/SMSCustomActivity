@@ -108,7 +108,7 @@ const manageDropDownSearchBox = () =>{
         console.log(campaignOffersTypesValues)
         const value = event.target.value;
         const filteredValues = campaignOffersTypesValues.filter(function(item){
-          return item.values.value === value;
+          return item.values.value.includes(value);
         })
         
         console.log("Filtered campaignOffersTypesValues by " + value);
