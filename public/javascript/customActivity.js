@@ -10,6 +10,26 @@ let schemaMap = [];
 var campaignOffersTypes;
 var campaignProductsTypes;
 
+// options for others fields
+var campaignCommunicationsTypes = {
+  data: [
+    {
+      values: { value: "Outbound" } 
+    }, 
+    {
+      values: { value: "Inbound" } 
+    }
+  ]
+};
+var groupCampaign = { data: [
+  {
+    values: { value: "False/False" } 
+  }, 
+  {
+    values: { value: "True/True" } 
+  }
+]};
+
 const buttonSettings = {
   button: 'next',
   text: 'done',
@@ -93,10 +113,30 @@ $(window).ready(() => {
 const manageDropDownSearchBox = () =>{
     var searchBoxes = document.getElementsByClassName("form__field--input-drop");
     for (let i = 0; i < searchBoxes.length; i++) {
+      
+      let dropdownHasConstantValues = searchBoxes[i].classList.contains("fixed")
+
       let searchBoxList = searchBoxes[i].getElementsByClassName("form__field--input-search-box")[0];
       let searchBoxIcon = searchBoxes[i].getElementsByClassName("form__field--icon")[0];
       
       searchBoxIcon.addEventListener("click", function (event) {
+        const id = event.target.id;
+        if(id === "communication-type-s"){
+          var groupCampaignElement = document.getElementById("communication-type-s");
+          mapDropdownValues(groupCampaignElement, campaignCommunicationsTypes)
+          var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+          searchBox.classList.remove("inactive");
+          return;
+        }
+
+        if(id === "group-campaign-s"){
+          var groupCampaignElement = document.getElementById("group-campaign-s");
+          mapDropdownValues(groupCampaignElement, groupCampaign)
+          var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+          searchBox.classList.remove("inactive");
+          return;
+        }
+
         var campaignOffersTypesDropdown = document.getElementById("types-of-offers")
         var campaignProductsTypesDropdown = document.getElementById("types-of-products")
         
@@ -106,45 +146,51 @@ const manageDropDownSearchBox = () =>{
         if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
         if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
 
-        var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
-        searchBox.classList.remove("inactive");
       })
+
       let searchBoxInput = searchBoxes[i].getElementsByClassName("form__field--text")[0];
       
-      searchBoxInput.addEventListener("keyup", function (event) {
-        const campaignOffersTypesValues = campaignOffersTypes.data;
-        console.log("campaignOffersTypesValues");
-        console.log(campaignOffersTypesValues);
-        const value = event.target.value;
-        const filteredValues = campaignOffersTypesValues.filter(function(item){
-          return item.values.value.startsWith(value);
-        })
+      // dropdownHasConstantValues
+      // form__field--input-search-box
+
+      if(dropdownHasConstantValues){
         
-        console.log("Filtered campaignOffersTypesValues by " + value);
-        console.log(filteredValues);
+        searchBoxInput.addEventListener("keyup", function (event) {
+          
+          const campaignOffersTypesValues = campaignOffersTypes.data;
+          console.log("campaignOffersTypesValues");
+          console.log(campaignOffersTypesValues);
+          const value = event.target.value;
+          const filteredValues = campaignOffersTypesValues.filter(function(item){
+            return item.values.value.startsWith(value);
+          })
+          
+          console.log("Filtered campaignOffersTypesValues by " + value);
+          console.log(filteredValues);
 
-        if(value) {
-          var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
-          searchBox.innerHTML = "";
+          if(value) {
+            var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+            searchBox.innerHTML = "";
 
-          for(let i=0; i<filteredValues.length; i++){
-            let option = document.createElement("div");
-            option.textContent = filteredValues[i].values.value;
+            for(let i=0; i<filteredValues.length; i++){
+              let option = document.createElement("div");
+              option.textContent = filteredValues[i].values.value;
 
-            option.addEventListener("click", function(event){
-              const valueSelected = event.target.textContent;
-              const searchBoxK = event.target.parentNode;
-              const searchInput = event.target.parentNode.parentNode.getElementsByClassName("form__field--text")[0];
-              searchInput.value = valueSelected;
-              searchBoxK.classList.add("inactive");
-            })
+              option.addEventListener("click", function(event){
+                const valueSelected = event.target.textContent;
+                const searchBoxK = event.target.parentNode;
+                const searchInput = event.target.parentNode.parentNode.getElementsByClassName("form__field--text")[0];
+                searchInput.value = valueSelected;
+                searchBoxK.classList.add("inactive");
+              })
 
-            searchBox.appendChild(option);
+              searchBox.appendChild(option);
+            }
+
+            searchBox.classList.remove("inactive");
           }
-
-          searchBox.classList.remove("inactive");
-        }
-      })
+        })
+      }
       searchBoxList.classList.add("inactive");
     }
 }
