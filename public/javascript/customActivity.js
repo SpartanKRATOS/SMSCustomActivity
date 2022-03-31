@@ -259,8 +259,8 @@ connection.on('initActivity', async (data) => {
 
   manageDropDownSearchBox();
 
-  let test = await makeRequest("test");
-  console.log(test);
+  //let test = await makeRequest("test");
+  // console.log(test);
 
   campaignOffersTypes = await makeRequest("campaign-offer-data");
   campaignProductsTypes = await makeRequest("campaign-product-type");
@@ -384,6 +384,8 @@ connection.on('initActivity', async (data) => {
 
 // This logic runs when user clicks the Done button
 connection.on('clickedNext', () => {
+
+  /*
   if (getFormValues().isValid) {
 
     payload.metaData.isConfigured = true;
@@ -458,7 +460,8 @@ connection.on('clickedNext', () => {
       });
       
     });
-    */
+    
     connection.trigger('updateActivity', payload);
   }
+  */
 });
