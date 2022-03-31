@@ -24,11 +24,11 @@ const getUserInfo = async (accessToken) =>
 
 const getSTSAppToken = async () =>
   axios.post(`https://${process.env.SFMC_SUBDOMAIN}.auth.marketingcloudapis.com/v2/token`, {
-      "grant_type": "client_credentials",
-      "client_id": "06fi09kvmru22lrfgwgkehek",
-      "client_secret": "hwItfvcRJbyFGtW7Dy6mFtJE",
-      "scope": "data_extensions_write",
-      "account_id": "510000545"
+      grant_type: "client_credentials",
+      client_id: "06fi09kvmru22lrfgwgkehek",
+      client_secret: "hwItfvcRJbyFGtW7Dy6mFtJE",
+      scope: "data_extensions_write",
+      account_id: "510000545"
     },
     {
       headers: {
