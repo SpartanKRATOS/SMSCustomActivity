@@ -382,7 +382,7 @@ connection.on('initActivity', async (data) => {
 // This logic runs when user clicks the Done button
 connection.on('clickedNext', () => {
 
-  /*
+  
   if (getFormValues().isValid) {
 
     payload.metaData.isConfigured = true;
@@ -442,7 +442,7 @@ connection.on('clickedNext', () => {
         id: $(this).attr('id'),
         value: val,
       };
-      */
+      
       /*
       $.each(payload.arguments.execute.inArguments, function (index, value) {
         if ($el.attr('type') === 'checkbox') {
@@ -456,9 +456,11 @@ connection.on('clickedNext', () => {
         }
       });
       
+      
     });
+    */
     
     connection.trigger('updateActivity', payload);
   }
-  */
+
 });
