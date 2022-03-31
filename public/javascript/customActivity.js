@@ -122,7 +122,7 @@ const manageDropDownSearchBox = () =>{
       searchBoxIcon.addEventListener("click", function (event) {
         const id = event.target.id;
         if(id === "communication-type-s"){
-          var groupCampaignElement = document.getElementById("communication-type-s");
+          var groupCampaignElement = document.getElementById("communication-type");
           mapDropdownValues(groupCampaignElement, campaignCommunicationsTypes)
           var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
           searchBox.classList.remove("inactive");
@@ -130,7 +130,7 @@ const manageDropDownSearchBox = () =>{
         }
 
         if(id === "group-campaign-s"){
-          var groupCampaignElement = document.getElementById("group-campaign-s");
+          var groupCampaignElement = document.getElementById("group-campaign");
           mapDropdownValues(groupCampaignElement, groupCampaign)
           var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
           searchBox.classList.remove("inactive");
