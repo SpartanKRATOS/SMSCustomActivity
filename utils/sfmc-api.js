@@ -30,7 +30,7 @@ const getWebAppToken = async (authcode, domain) =>
 const sendLog = async (accessToken) =>
   axios({
     method: 'post',
-    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/async/dataextensions/{id}/rows`,
+    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/async/dataextensions/key:4D4C06DA-C0EB-467C-AC13-65BFFF4CD442/rows`,
     data: {
         items: [{
           "CAMP_CAMPAIGN_ID": makeid(10),
@@ -88,4 +88,4 @@ const getCampaignProductTypes  = async (accessToken) =>
     headers: { Authorization: accessToken },
   });
 
-module.exports = { getWebAppToken, getUserInfo, getCampaignOfferTypes, getCampaignProductTypes, getSTSAppToken };
+module.exports = { getWebAppToken, getUserInfo, getCampaignOfferTypes, getCampaignProductTypes, getSTSAppToken, sendLog };
