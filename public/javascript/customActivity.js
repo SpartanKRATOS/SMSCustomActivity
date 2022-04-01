@@ -274,6 +274,8 @@ connection.on('initActivity', async (data) => {
   connection.trigger('requestInteraction');
   connection.on('requestedInteraction', (settings) => {
     if (settings) {
+      console.log("settings")
+      console.log(settings)
       journeyName = settings.name;
       journeyVersionNumber = settings.version;
     }
@@ -285,6 +287,9 @@ connection.on('initActivity', async (data) => {
     // Retrieve the Entry Source fields and display them on the UI in form of AMPscript-like personalization strings
     let persAttrs = '';
 
+    console.log("Request schema")
+    console.log(reqSchema)
+    
     reqSchema.schema.forEach((d) => {
       if (d && d.name && d.key) {
         persAttrs += `%%${d.name}%%<br>`;
