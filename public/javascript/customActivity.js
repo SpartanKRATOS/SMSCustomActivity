@@ -289,7 +289,7 @@ connection.on('initActivity', async (data) => {
 
     console.log("Request schema")
     console.log(reqSchema)
-    
+
     reqSchema.schema.forEach((d) => {
       if (d && d.name && d.key) {
         persAttrs += `%%${d.name}%%<br>`;
@@ -402,7 +402,8 @@ connection.on('clickedNext', () => {
         campaignOffersType: getFormValues().payload.cmpTypeOffer,
         campaignProductsType: getFormValues().payload.cmpProductType,
         campaignCommunicationsType: getFormValues().payload.cmpCommunictionType,
-        campaignGroup: getFormValues().payload.cmpGroupCmp
+        campaignGroup: getFormValues().payload.cmpGroupCmp,
+        activityId:"{{Activity.Id}}"
       },
     ];
 
