@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
 const JWT = require('../utils/jwt-decoder');
+const sfmcAPI = require('../utils/sfmc-api');
 const isWithinRange = require('../utils/ip-checker');
 const logger = require('../utils/logger');
 
@@ -36,7 +37,7 @@ const ipCheckDisabled =
  *   mode: 0
  * }
  */
-router.post('/execute', (req, res) => {
+router.post('/execute', async (req, res) => {
   let errMsg = '';
 
   const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
@@ -46,6 +47,13 @@ router.post('/execute', (req, res) => {
       const data = JWT(req.body);
 
       const uniqueTransactionId = uuidv4(); // useful for debugging
+
+      const tokenData = await sfmcAPI.getSTSAppToken();
+
+      const accessToken = tokenData.data.access_token;
+
+      logger.info("INFO TAOUFIQ");
+      logger.info(accessToken);
 
       logger.info(
         `${req.url} endpoint received: ${JSON.stringify(
