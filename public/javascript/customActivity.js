@@ -74,8 +74,7 @@ const validateForm = function (cb) {
 };
 */
 
-// check if form values are ccurate
-
+// check if form values are accurate
 const getFormValues = () => {
   const cmpId = document.getElementById("campaign-id").value;
   const cmpControlGroup = document.getElementById("control-group").value;

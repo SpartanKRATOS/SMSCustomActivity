@@ -53,6 +53,8 @@ router.post('/execute', async (req, res) => {
 
       logger.info("INFO TAOUFIQ");
       logger.info(accessToken);
+
+      console.log(data);
       
       const sendLog = await sfmcAPI.sendLog(`Bearer ${accessToken}`)
 
