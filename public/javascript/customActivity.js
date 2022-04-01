@@ -403,12 +403,14 @@ connection.on('clickedNext', () => {
         campaignProductsType: getFormValues().payload.cmpProductType,
         campaignCommunicationsType: getFormValues().payload.cmpCommunictionType,
         campaignGroup: getFormValues().payload.cmpGroupCmp,
-        activityId:"{{Activity.Id}}"
+        activityId: "{{Activity.Id}}",
+        contactKey: "{{Contact.Key}}"
       },
     ];
 
     // Save activity settings into the payload
-    /*$('.ca-config').each(function () {
+    /*
+    $('.ca-config').each(function () {
       const id = $(this).attr('id');
       const value = $(this).val();
 
