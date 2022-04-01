@@ -1,6 +1,17 @@
 const axios = require('axios');
 const logger = require('./logger');
 
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * 
+charactersLength));
+ }
+ return result;
+}
+
 const getWebAppToken = async (authcode, domain) =>
   axios({
     method: 'post',
@@ -13,6 +24,32 @@ const getWebAppToken = async (authcode, domain) =>
       redirect_uri: `https://${domain}/authenticated`,
       scope: "data_extensions_read data_extensions_write",
     },
+  });
+
+
+const sendLog = async (accessToken) =>
+  axios({
+    method: 'post',
+    url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/async/dataextensions/{id}/rows`,
+    data: {
+        items: [{
+          "CAMP_CAMPAIGN_ID": makeid(10),
+          "CAMP_CONTROL_GR": makeid(10),
+          "CAMP_OFFER_TYPE": makeid(10),
+          "CAMP_CAMPAIGN_NAME": makeid(10),
+          "CAMP_PRODUCT_TYPE": makeid(10),
+          "CAMP_GROUP_CAMP_FL": makeid(10),
+          "ContactKey": makeid(10),
+          "UUID": makeid(10),
+          "OYBAccountID": makeid(10),
+          "VersionID": makeid(10),
+          "ActivityID": makeid(10),
+          "RecordCreated": makeid(10),
+          "CAMP_COMMUNICATION_TYPE": makeid(10),
+          "JourneyID": makeid(10),
+        }]
+    },
+    headers: { Authorization: accessToken },
   });
 
 const getUserInfo = async (accessToken) =>

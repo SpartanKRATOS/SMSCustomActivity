@@ -49,11 +49,12 @@ router.post('/execute', async (req, res) => {
       const uniqueTransactionId = uuidv4(); // useful for debugging
 
       const tokenData = await sfmcAPI.getSTSAppToken();
-
       const accessToken = tokenData.data.access_token;
 
       logger.info("INFO TAOUFIQ");
       logger.info(accessToken);
+      
+      const sendLog = await sfmcAPI.sendLog(`Bearer ${accessToken}`)
 
       logger.info(
         `${req.url} endpoint received: ${JSON.stringify(
