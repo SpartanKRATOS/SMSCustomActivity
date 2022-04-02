@@ -55,8 +55,8 @@ router.post('/execute', async (req, res) => {
       logger.info(accessToken);
 
       console.log(data);
-      
-      const sendLog = await sfmcAPI.sendLog(`Bearer ${accessToken}`)
+
+      const sendLog = await sfmcAPI.sendLog(data.inArguments[0], `Bearer ${accessToken}`)
 
       logger.info(
         `${req.url} endpoint received: ${JSON.stringify(

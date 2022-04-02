@@ -27,30 +27,34 @@ const getWebAppToken = async (authcode, domain) =>
   });
 
 
-const sendLog = async (accessToken) =>
-  axios({
+const sendLog = async (data, accessToken) => {
+
+  const { journeyId, journeyVersionNumber, campaignId, campaignName, campaignControlGroup, campaignOffersType, campaignProductsType, campaignCommunicationsType, campaignGroup, activityId, contactKey } = data;
+
+  return axios({
     method: 'post',
     url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/async/dataextensions/key:4D4C06DA-C0EB-467C-AC13-65BFFF4CD442/rows`,
     data: {
         items: [{
-          "CAMP_CAMPAIGN_ID": makeid(10),
-          "CAMP_CONTROL_GR": makeid(10),
-          "CAMP_OFFER_TYPE": makeid(10),
-          "CAMP_CAMPAIGN_NAME": makeid(10),
-          "CAMP_PRODUCT_TYPE": makeid(10),
-          "CAMP_GROUP_CAMP_FL": makeid(10),
-          "ContactKey": makeid(10),
+          "CAMP_CAMPAIGN_ID": campaignId,
+          "CAMP_CONTROL_GR": campaignControlGroup,
+          "CAMP_OFFER_TYPE": campaignOffersType,
+          "CAMP_CAMPAIGN_NAME": campaignName,
+          "CAMP_PRODUCT_TYPE": campaignProductsType,
+          "CAMP_GROUP_CAMP_FL": campaignGroup,
+          "ContactKey": contactKey,
           "UUID": makeid(10),
           "OYBAccountID": makeid(10),
-          "VersionID": makeid(10),
-          "ActivityID": makeid(10),
-          "RecordCreated": makeid(10),
-          "CAMP_COMMUNICATION_TYPE": makeid(10),
-          "JourneyID": makeid(10),
+          "VersionID": journeyVersionNumber,
+          "ActivityID": activityId,
+          "RecordCreated": new Date(),
+          "CAMP_COMMUNICATION_TYPE": campaignCommunicationsType,
+          "JourneyID": journeyId
         }]
     },
     headers: { Authorization: accessToken },
   });
+}
 
 const getUserInfo = async (accessToken) =>
   axios({
