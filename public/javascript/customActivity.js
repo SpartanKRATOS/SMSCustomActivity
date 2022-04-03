@@ -97,6 +97,8 @@ connection.on('initActivity', async (data) => {
 
   if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
   if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
+  mapDropdownValues(document.getElementById("group-campaign"), groupCampaign)
+  mapDropdownValues(document.getElementById("communication-type"), campaignCommunicationsTypes)
 
   manageBody("SHOW");
 

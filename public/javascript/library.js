@@ -3,6 +3,7 @@ const equals = (valueOne, valueTwo) => valueOne === valueTwo;
 const manageBody = (type) => {
     document.getElementById("body").style.opacity = equals(type, "HIDE") ? 0:1;
 }
+
 // check if form values are accurate
 const getFormValues = () => {
     const cmpId = document.getElementById("campaign-id").value;
@@ -62,8 +63,8 @@ const mapDropdownValues = (element, options) => {
         const searchInput = event.target.parentNode.parentNode.getElementsByClassName("form__field--text")[0];
         searchInput.value = valueSelected;
         searchBox.classList.add("inactive");
-      })
-  
+      });
+
       element.appendChild(option);
     }
 }
@@ -95,6 +96,7 @@ const mapDropdownValues = (element, options) => {
         
         searchBoxIcon.addEventListener("click", function (event) {
           const id = event.target.id;
+          
           if(equals(id,"communication-type-s") || equals(id, "group-campaign-s")) { 
             manageSearchClickForStaticFields(event, id.substring(0, id.length - 2));
             return;
