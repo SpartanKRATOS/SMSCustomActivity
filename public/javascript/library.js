@@ -76,7 +76,12 @@ const mapDropdownValues = (element, options) => {
     mapDropdownValues(element, mappedValued)
     var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
     hideSearchBoxes();
-    searchBox.classList.remove("inactive");
+    if(searchBox.classList.contains("inactive")){
+        hideSearchBoxes();
+        searchBox.classList.remove("inactive");
+    }else {
+        searchBox.classList.add("inactive");
+    }
   }
   
   const manageDropDownSearchBox = () =>{
@@ -151,7 +156,12 @@ const mapDropdownValues = (element, options) => {
               searchBox.classList.remove("inactive");
             }
           })
+        }else {
+            searchBoxInput.addEventListener("click", function (event) {
+                searchBoxList.classList.remove("inactive");
+            })
         }
+        
         searchBoxList.classList.add("inactive");
       }
   }
