@@ -88,21 +88,14 @@ const getFormValues = () => {
     return value !== "" && value !== undefined && value !== null
   }
 
+  const isValid = notEmptyOrUndefined(cmpId) && notEmptyOrUndefined(cmpControlGroup) && notEmptyOrUndefined(cmpTypeOffer) && notEmptyOrUndefined(cmpName) && notEmptyOrUndefined(cmpCommunictionType) && notEmptyOrUndefined(cmpProductType) && notEmptyOrUndefined(cmpGroupCmp);
+
   return {
-    isValid: notEmptyOrUndefined(cmpId) && notEmptyOrUndefined(cmpControlGroup) && notEmptyOrUndefined(cmpTypeOffer) && notEmptyOrUndefined(cmpName) && notEmptyOrUndefined(cmpCommunictionType) && notEmptyOrUndefined(cmpProductType) && notEmptyOrUndefined(cmpGroupCmp),
-    payload: {
-      cmpId,
-      cmpControlGroup,
-      cmpTypeOffer,
-      cmpName,
-      cmpCommunictionType,
-      cmpProductType,
-      cmpGroupCmp
-    }
+    isValid, payload: { cmpId, cmpControlGroup, cmpTypeOffer, cmpName, cmpCommunictionType, cmpProductType, cmpGroupCmp }
   }
 }
 
-
+// take values from payload and display them in UI
 const mapValuesinUI = (map) => {
 
   const { campaignId, campaignControlGroup, campaignOffersType, campaignName, campaignCommunicationsType, campaignProductsType, campaignGroup } = map;
@@ -117,10 +110,9 @@ const mapValuesinUI = (map) => {
 
 }
 
-
 // map dropdown values
 const mapDropdownValues = (element, options) => {
-  if(!options.data.length) return;
+  if(!options.data.length || !element) return;
   
   element.innerHTML = "";
   for(let i=0; i<options.data.length; i++){
@@ -142,22 +134,24 @@ const mapDropdownValues = (element, options) => {
 // This logic runs while UI is open
 $(window).ready(() => {
   connection.trigger('ready');
-
-  /*
-  validateForm(function ($form) {
-    $form.on('change click keyup input paste', 'input, textarea', function () {
-      buttonSettings.enabled = $form.valid();
-      connection.trigger('updateButton', buttonSettings);
-    });
-  });
-  */
 });
 
 const hideSearchBoxes = () => {
   var searchBoxes = document.getElementsByClassName("form__field--input-search-box");
+  if(!searchBoxes) return;
+
   for(let i = 0; i<searchBoxes.length; i++){
     searchBoxes[i].classList.add("inactive")
   }
+}
+
+const manageSearchClickForStaticFields = (event, type) => {
+  const mappedValued = type === "group-campaign-s" ? groupCampaign : campaignCommunicationsTypes;
+  var element = document.getElementById(type);
+  mapDropdownValues(element, mappedValued)
+  var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+  hideSearchBoxes();
+  searchBox.classList.remove("inactive");
 }
  
 
@@ -172,29 +166,13 @@ const manageDropDownSearchBox = () =>{
       
       searchBoxIcon.addEventListener("click", function (event) {
         const id = event.target.id;
-        if(id === "communication-type-s"){
-          var groupCampaignElement = document.getElementById("communication-type");
-          mapDropdownValues(groupCampaignElement, campaignCommunicationsTypes)
-          var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
-          hideSearchBoxes();
-          searchBox.classList.remove("inactive");
-          return;
-        }
-
-        if(id === "group-campaign-s"){
-          var groupCampaignElement = document.getElementById("group-campaign");
-          mapDropdownValues(groupCampaignElement, groupCampaign)
-          var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
-          hideSearchBoxes();
-          searchBox.classList.remove("inactive");
+        if(id === "communication-type-s" || id === "group-campaign-s") { 
+          manageSearchClickForStaticFields(event, id);
           return;
         }
 
         var campaignOffersTypesDropdown = document.getElementById("types-of-offers")
         var campaignProductsTypesDropdown = document.getElementById("types-of-products")
-        
-        console.log(campaignOffersTypes)
-        console.log(campaignProductsTypes)
 
         if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
         if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
@@ -263,9 +241,6 @@ connection.on('initActivity', async (data) => {
 
   var campaignOffersTypesDropdown = document.getElementById("types-of-offers")
   var campaignProductsTypesDropdown = document.getElementById("types-of-products")
-  
-  console.log(campaignOffersTypes)
-  console.log(campaignProductsTypes)
 
   if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
   if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
@@ -273,8 +248,6 @@ connection.on('initActivity', async (data) => {
   connection.trigger('requestInteraction');
   connection.on('requestedInteraction', (settings) => {
     if (settings) {
-      console.log("settings")
-      console.log(settings)
       journeyName = settings.name;
       journeyVersionNumber = settings.version;
     }
@@ -286,9 +259,6 @@ connection.on('initActivity', async (data) => {
     // Retrieve the Entry Source fields and display them on the UI in form of AMPscript-like personalization strings
     let persAttrs = '';
 
-    console.log("Request schema")
-    console.log(reqSchema)
-
     reqSchema.schema.forEach((d) => {
       if (d && d.name && d.key) {
         persAttrs += `%%${d.name}%%<br>`;
@@ -296,9 +266,6 @@ connection.on('initActivity', async (data) => {
       }
     });
 
-    if (persAttrs) {
-      // document.querySelector('#personalizationSpan').innerHTML = persAttrs;
-    }
   });
 
   payload = data ? data : {};
@@ -316,46 +283,8 @@ connection.on('initActivity', async (data) => {
   // iterate over inArguments & display already selected values in the UI
   if(hasInArguments) mapValuesinUI(inArguments[0]);
 
-  /*
-  $.each(inArguments, function (index, inArgument) {
-    $.each(inArgument, function (key, value) {
-      const $el = $('#' + key);
-      if ($el.attr('type') === 'checkbox') {
-        $el.prop('checked', value === 'true');
-      } else {
-        // If Entry Source Data Binding found transform it to AMPscript-like personalization string
-        if (
-          typeof value === 'string' &&
-          [
-            ...value.matchAll(
-              /{{(?!Contact.|InteractionDefaults.|Interaction.|Context.)[A-Za-z0-9.:_"'-]+}}/g
-            ),
-          ].length > 0
-        ) {
-          const dataBindingArr = [
-            ...value.matchAll(
-              /{{(?!Contact.|InteractionDefaults.|Interaction.|Context.)[A-Za-z0-9.:_"'-]+}}/g
-            ),
-          ];
-
-          dataBindingArr.forEach((dataBinding) => {
-            const attrName = dataBinding[0].split('.').pop().split('}').shift();
-            const newValue = `%%${attrName}%%`;
-            value = value.replace(dataBinding[0], newValue);
-          });
-        }
-        $el.val(value);
-      }
-    });
-  });
-  */
-  // Iterate over activity settings and display them on UI
+ // Iterate over activity settings and display them on UI
   const args = payload.arguments.execute;
-  
-  /*$.each(args, function (key, value) {
-    const $el = $('#' + key);
-    $el.val(value);
-  });*/
 
   // Iterate over outArguments and display them on UI
   const hasOutArguments = Boolean(
@@ -406,66 +335,6 @@ connection.on('clickedNext', () => {
         contactKey: "{{Contact.Key}}"
       },
     ];
-
-    // Save activity settings into the payload
-    /*
-    $('.ca-config').each(function () {
-      const id = $(this).attr('id');
-      const value = $(this).val();
-
-      if (value) {
-        payload.arguments.execute[id] = value;
-      }
-    });
-    */
-
-    // Save input values into the payload
-    /*
-    $('.js-activity-setting').each(function () {
-      const $el = $(this);
-
-      let val = $(this).val();
-
-      // Replace all AMPscript-like personalization strings with actual Data Binding
-      /*
-      if (val.indexOf('%%') > -1 && val.indexOf('%%') < val.lastIndexOf('%%')) {
-        while (val.indexOf('%%') > -1 && val.indexOf('%%') < val.lastIndexOf('%%')) {
-          const attrName = val.split('%%')[1];
-          const attr = schemaMap.find((v) => v.name === attrName);
-          let attrKey;
-
-          if (attr && attr.key) {
-            attrKey = attr.key;
-          } else {
-            break;
-          }
-
-          val = val.replace(`%%${attrName}%%`, `{{${attrKey}}}`);
-        }
-      }
-      */
-
-      /*const setting = {
-        id: $(this).attr('id'),
-        value: val,
-      };
-      
-      /*
-      $.each(payload.arguments.execute.inArguments, function (index, value) {
-        if ($el.attr('type') === 'checkbox') {
-          if ($el.is(':checked')) {
-            value[setting.id] = setting.value;
-          } else {
-            value[setting.id] = 'false';
-          }
-        } else {
-          value[setting.id] = setting.value;
-        }
-      });
-      
-      
-    });
-    */
     
     connection.trigger('updateActivity', payload);
   }
