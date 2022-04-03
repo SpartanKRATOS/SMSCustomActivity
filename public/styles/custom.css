@@ -22,7 +22,7 @@ h3 {
   width: 100%;
   box-shadow: 0 2px 2px 0 rgb(0,0,0,0.1);
   border-radius: 0.2rem;
-  padding: 0.75rem 1rem 0;
+  padding: 0.75rem 1rem 50px;
 }
 
 .form__container {
@@ -72,10 +72,31 @@ h3 {
   position: absolute;
   top: 30px;
   left: 0;
+  max-height: 60px;
   background:#fff;
   box-shadow:0 2px 2px 0 rgb(0,0,0,0.1);
   z-index: 5;
   width: 100%;
+}
+
+/* width */
+.form__field--input-search-box::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.form__field--input-search-box::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.form__field--input-search-box::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.form__field--input-search-box::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
 .form__field--input-drop > span {

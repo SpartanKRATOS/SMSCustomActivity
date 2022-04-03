@@ -1,5 +1,8 @@
 const equals = (valueOne, valueTwo) => valueOne === valueTwo;
 
+const manageBody = (type) => {
+    document.getElementById("body").style.opacity = equals(type, "HIDE") ? 0:1;
+}
 // check if form values are accurate
 const getFormValues = () => {
     const cmpId = document.getElementById("campaign-id").value;
@@ -100,7 +103,12 @@ const mapDropdownValues = (element, options) => {
   
           var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
           hideSearchBoxes();
-          searchBox.classList.remove("inactive");
+          
+          if(searchBox.classList.contains("inactive")){
+            searchBox.classList.remove("inactive");
+          }else {
+            searchBox.classList.add("inactive");
+          }
   
         })
   

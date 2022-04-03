@@ -83,7 +83,7 @@ $(window).ready(() => {
 // This logic runs when user opens the UI
 connection.on('initActivity', async (data) => {
   // The requestInteraction event provides useful information about the Journey
-
+  manageBody("HIDE");
   manageDropDownSearchBox();
 
   //let test = await makeRequest("test");
@@ -97,6 +97,8 @@ connection.on('initActivity', async (data) => {
 
   if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
   if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
+
+  manageBody("SHOW");
 
   connection.trigger('requestInteraction');
   connection.on('requestedInteraction', (settings) => {
