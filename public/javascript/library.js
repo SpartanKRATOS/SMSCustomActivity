@@ -102,9 +102,9 @@ const mapDropdownValues = (element, options) => {
           if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
   
           var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
-          hideSearchBoxes();
           
           if(searchBox.classList.contains("inactive")){
+            hideSearchBoxes();
             searchBox.classList.remove("inactive");
           }else {
             searchBox.classList.add("inactive");
