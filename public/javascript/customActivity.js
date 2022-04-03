@@ -131,6 +131,15 @@ const mapDropdownValues = (element, options) => {
   }
 }
 
+const manageSearchClickForStaticFields = (event, type) => {
+  const mappedValued = type === "group-campaign-s" ? groupCampaign : campaignCommunicationsTypes;
+  var element = document.getElementById(type);
+  mapDropdownValues(element, mappedValued)
+  var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
+  hideSearchBoxes();
+  searchBox.classList.remove("inactive");
+}
+
 // This logic runs while UI is open
 $(window).ready(() => {
   connection.trigger('ready');
@@ -145,16 +154,6 @@ const hideSearchBoxes = () => {
   }
 }
 
-const manageSearchClickForStaticFields = (event, type) => {
-  const mappedValued = type === "group-campaign-s" ? groupCampaign : campaignCommunicationsTypes;
-  var element = document.getElementById(type);
-  mapDropdownValues(element, mappedValued)
-  var searchBox = event.target.parentNode.getElementsByClassName("form__field--input-search-box")[0];
-  hideSearchBoxes();
-  searchBox.classList.remove("inactive");
-}
- 
-
 const manageDropDownSearchBox = () =>{
     var searchBoxes = document.getElementsByClassName("form__field--input-drop");
     for (let i = 0; i < searchBoxes.length; i++) {
@@ -167,7 +166,7 @@ const manageDropDownSearchBox = () =>{
       searchBoxIcon.addEventListener("click", function (event) {
         const id = event.target.id;
         if(id === "communication-type-s" || id === "group-campaign-s") { 
-          manageSearchClickForStaticFields(event, id);
+          manageSearchClickForStaticFields(event, id.substring(0, id.length - 2));
           return;
         }
 
@@ -335,7 +334,7 @@ connection.on('clickedNext', () => {
         contactKey: "{{Contact.Key}}"
       },
     ];
-    
+
     connection.trigger('updateActivity', payload);
   }
 
