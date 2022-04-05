@@ -58,14 +58,7 @@ router.post('/execute', async (req, res) => {
           body: "test check ",
           to: "+212603804739",
         })
-        .then((message) => {
-          reply
-            .status(200)
-            .send({ message: "message sent successfully " + message.sid + "" });
-        })
-        .catch((error) => {
-          reply.status(500).send({ message: "Error while sending the message" });
-        });
+        .then(message => console.log(message.sid));
 
       //var arr = ["Taoufiq", "Salah", "Yassine"]
  
@@ -107,13 +100,13 @@ router.post('/save', (req, res) => {
       const accountSid = process.env.TWILIO_ACCOUNT_SID;
       const authToken = process.env.TWILIO_AUTH_TOKEN;
       const client = require('twilio')(accountSid, authToken);
-      logger.info(`${req.url} endpoint received: ${JSON.stringify(data)}`);
+      //logger.info(`${req.url} endpoint received: ${JSON.stringify(data)}`);
       client.messages
         .create({
           from: "+18455813006",
           body: "test check ",
           to: "+212603804739",
-        });
+        }).then(message => console.log(message.sid));;
         
       logger.info(`${req.url} endpoint received: ${JSON.stringify(data)}`);
 
