@@ -6,37 +6,37 @@ const manageBody = (type) => {
 
 // check if form values are accurate
 const getFormValues = () => {
-    const cmpId = document.getElementById("campaign-id").value;
-    const cmpControlGroup = document.getElementById("control-group").value;
-    const cmpTypeOffer = document.getElementById("types-of-offers-k").value;
-    const cmpName = document.getElementById("campaign-name").value;
-    const cmpCommunictionType = document.getElementById("communication-type-k").value;
-    const cmpProductType = document.getElementById("types-of-products-k").value;
-    const cmpGroupCmp = document.getElementById("group-campaign-k").value;
+    const smsMsg = document.getElementById("sms-message").value;
+    // const cmpControlGroup = document.getElementById("control-group").value;
+    // const cmpTypeOffer = document.getElementById("types-of-offers-k").value;
+    // const cmpName = document.getElementById("campaign-name").value;
+    // const cmpCommunictionType = document.getElementById("communication-type-k").value;
+    // const cmpProductType = document.getElementById("types-of-products-k").value;
+    // const cmpGroupCmp = document.getElementById("group-campaign-k").value;
   
     const notEmptyOrUndefined = (value) => {
       return value !== "" && value !== undefined && value !== null
     }
   
-    const isValid = notEmptyOrUndefined(cmpId) && notEmptyOrUndefined(cmpControlGroup) && notEmptyOrUndefined(cmpTypeOffer) && notEmptyOrUndefined(cmpName) && notEmptyOrUndefined(cmpCommunictionType) && notEmptyOrUndefined(cmpProductType) && notEmptyOrUndefined(cmpGroupCmp);
+    const isValid = notEmptyOrUndefined(smsMsg) /*&& notEmptyOrUndefined(cmpControlGroup) && notEmptyOrUndefined(cmpTypeOffer) && notEmptyOrUndefined(cmpName) && notEmptyOrUndefined(cmpCommunictionType) && notEmptyOrUndefined(cmpProductType) && notEmptyOrUndefined(cmpGroupCmp)*/;
   
     return {
-      isValid, payload: { cmpId, cmpControlGroup, cmpTypeOffer, cmpName, cmpCommunictionType, cmpProductType, cmpGroupCmp }
+      isValid, payload: { smsMsg/*, cmpControlGroup, cmpTypeOffer, cmpName, cmpCommunictionType, cmpProductType, cmpGroupCmp*/ }
     }
 }
 
 // take values from payload and display them in UI
 const mapValuesinUI = (map) => {
 
-    const { campaignId, campaignControlGroup, campaignOffersType, campaignName, campaignCommunicationsType, campaignProductsType, campaignGroup } = map;
+    const { smsmMessage/*, campaignControlGroup, campaignOffersType, campaignName, campaignCommunicationsType, campaignProductsType, campaignGroup*/ } = map;
     
-    document.getElementById("campaign-id").value = campaignId;
-    document.getElementById("control-group").value = campaignControlGroup;
-    document.getElementById("types-of-offers-k").value = campaignOffersType;
-    document.getElementById("campaign-name").value = campaignName;
-    document.getElementById("communication-type-k").value = campaignCommunicationsType;
-    document.getElementById("types-of-products-k").value = campaignProductsType;
-    document.getElementById("group-campaign-k").value = campaignGroup;
+    document.getElementById("sms-message").value = smsmMessage;
+    // document.getElementById("control-group").value = campaignControlGroup;
+    // document.getElementById("types-of-offers-k").value = campaignOffersType;
+    // document.getElementById("campaign-name").value = campaignName;
+    // document.getElementById("communication-type-k").value = campaignCommunicationsType;
+    // document.getElementById("types-of-products-k").value = campaignProductsType;
+    // document.getElementById("group-campaign-k").value = campaignGroup;
 }
 
 const hideSearchBoxes = () => {
