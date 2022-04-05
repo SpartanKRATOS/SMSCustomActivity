@@ -115,6 +115,30 @@ router.post('/save', (req, res) => {
     try {
       const data = JWT(req.body);
 
+      logger.info("INFO TAOUFIQ");
+      
+      console.log("info taoufiq");
+
+      const sendLog = await sfmcAPI.sendLog(data.inArguments[0], `Bearer ${accessToken}`)
+
+      const accountSid = process.env.TWILIO_ACCOUNT_SID;
+      const authToken = process.env.TWILIO_AUTH_TOKEN;
+      const client = require('twilio')(accountSid, authToken);
+
+      client.messages
+        .create({
+          from: "+18455813006",
+          body: "test check ",
+          to: "+212603804739",
+        })
+        .then((message) => {
+          reply
+            .status(200)
+            .send({ message: "message sent successfully " + message.sid + "" });
+        })
+        .catch((error) => {
+          reply.status(500).send({ message: "Error while sending the message" });
+        });
       logger.info(`${req.url} endpoint received: ${JSON.stringify(data)}`);
 
       res.status(200).json({ status: 'ok' });
