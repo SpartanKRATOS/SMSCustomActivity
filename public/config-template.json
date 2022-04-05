@@ -18,7 +18,7 @@
   },
   "arguments": {
     "execute": {
-      "url": "https://$DOMAIN/activity/execute",
+      "url": "https://sms-custom-activity-sfmc.herokuapp.com/activity/execute",
       "verb": "POST",
       "body": "",
       "header": "",
@@ -41,12 +41,12 @@
   },
   "configurationArguments": {
     "save": {
-      "url": "https://$DOMAIN/activity/save",
+      "url": "https://sms-custom-activity-sfmc.herokuapp.com/activity/save",
       "verb": "POST",
       "useJwt": true
     },
     "validate": {
-      "url": "https://$DOMAIN/activity/validate",
+      "url": "https://sms-custom-activity-sfmc.herokuapp.com/activity/validate",
       "verb": "POST",
       "useJwt": true
     },

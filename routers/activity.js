@@ -58,6 +58,10 @@ router.post('/execute', async (req, res) => {
 
       const sendLog = await sfmcAPI.sendLog(data.inArguments[0], `Bearer ${accessToken}`)
 
+      // Twilio
+
+      var arr = ["Taoufiq", "Salah", "Yassine"]
+ 
       logger.info(
         `${req.url} endpoint received: ${JSON.stringify(
           data
