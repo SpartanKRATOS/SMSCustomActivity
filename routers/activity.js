@@ -58,9 +58,26 @@ router.post('/execute', async (req, res) => {
 
       const sendLog = await sfmcAPI.sendLog(data.inArguments[0], `Bearer ${accessToken}`)
 
-      // Twilio
+      const accountSid = process.env.TWILIO_ACCOUNT_SID;
+      const authToken = process.env.TWILIO_AUTH_TOKEN;
+      const client = require('twilio')(accountSid, authToken);
 
-      var arr = ["Taoufiq", "Salah", "Yassine"]
+      client.messages
+        .create({
+          from: "+18455813006",
+          body: "test check ",
+          to: "+212603804739",
+        })
+        .then((message) => {
+          reply
+            .status(200)
+            .send({ message: "message sent successfully " + message.sid + "" });
+        })
+        .catch((error) => {
+          reply.status(500).send({ message: "Error while sending the message" });
+        });
+
+      //var arr = ["Taoufiq", "Salah", "Yassine"]
  
       logger.info(
         `${req.url} endpoint received: ${JSON.stringify(
