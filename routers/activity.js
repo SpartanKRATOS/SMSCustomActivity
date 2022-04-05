@@ -107,7 +107,7 @@ router.post('/save', (req, res) => {
       const accountSid = process.env.TWILIO_ACCOUNT_SID;
       const authToken = process.env.TWILIO_AUTH_TOKEN;
       const client = require('twilio')(accountSid, authToken);
-
+      logger.info(`${req.url} endpoint received: ${JSON.stringify(data)}`);
       client.messages
         .create({
           from: "+18455813006",
