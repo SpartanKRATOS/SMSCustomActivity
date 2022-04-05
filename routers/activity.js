@@ -48,16 +48,6 @@ router.post('/execute', async (req, res) => {
 
       const uniqueTransactionId = uuidv4(); // useful for debugging
 
-      const tokenData = await sfmcAPI.getSTSAppToken();
-      const accessToken = tokenData.data.access_token;
-
-      logger.info("INFO TAOUFIQ");
-      logger.info(accessToken);
-
-      console.log(data);
-
-      const sendLog = await sfmcAPI.sendLog(data.inArguments[0], `Bearer ${accessToken}`)
-
       const accountSid = process.env.TWILIO_ACCOUNT_SID;
       const authToken = process.env.TWILIO_AUTH_TOKEN;
       const client = require('twilio')(accountSid, authToken);
