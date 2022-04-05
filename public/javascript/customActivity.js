@@ -5,6 +5,7 @@ let $form;
 let journeyName;
 let journeyVersionNumber;
 let schemaMap = [];
+let smsMessage;
 
 // data coming from DE
 // var campaignOffersTypes;
@@ -181,7 +182,7 @@ connection.on('clickedNext', () => {
       {
         journeyName,
         journeyVersionNumber,
-        smsMessages: getFormValues().payload.smsMsg,
+        smsMessage: getFormValues().payload.smsMsg,
         // campaignName: getFormValues().payload.cmpName,
         // campaignControlGroup: getFormValues().payload.cmpControlGroup,
         // campaignOffersType: getFormValues().payload.cmpTypeOffer,
