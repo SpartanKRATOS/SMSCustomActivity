@@ -113,15 +113,8 @@ router.post('/save', (req, res) => {
           from: "+18455813006",
           body: "test check ",
           to: "+212603804739",
-        })
-        .then((message) => {
-          reply
-            .status(200)
-            .send({ message: "message sent successfully " + message.sid + "" });
-        })
-        .catch((error) => {
-          reply.status(500).send({ message: "Error while sending the message" });
         });
+        
       logger.info(`${req.url} endpoint received: ${JSON.stringify(data)}`);
 
       res.status(200).json({ status: 'ok' });
