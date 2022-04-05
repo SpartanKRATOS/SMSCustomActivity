@@ -36,19 +36,19 @@ const sendLog = async (data, accessToken) => {
     url: `https://${process.env.SFMC_SUBDOMAIN}.rest.marketingcloudapis.com/data/v1/async/dataextensions/key:4D4C06DA-C0EB-467C-AC13-65BFFF4CD442/rows`,
     data: {
         items: [{
-          "CAMP_CAMPAIGN_ID": campaignId,
-          "CAMP_CONTROL_GR": campaignControlGroup,
-          "CAMP_OFFER_TYPE": campaignOffersType,
-          "CAMP_CAMPAIGN_NAME": campaignName,
-          "CAMP_PRODUCT_TYPE": campaignProductsType,
-          "CAMP_GROUP_CAMP_FL": campaignGroup,
+          // "CAMP_CAMPAIGN_ID": campaignId,
+          // "CAMP_CONTROL_GR": campaignControlGroup,
+          // "CAMP_OFFER_TYPE": campaignOffersType,
+          // "CAMP_CAMPAIGN_NAME": campaignName,
+          // "CAMP_PRODUCT_TYPE": campaignProductsType,
+          // "CAMP_GROUP_CAMP_FL": campaignGroup,
           "ContactKey": contactKey,
           "UUID": makeid(10),
           "OYBAccountID": makeid(10),
           "VersionID": journeyVersionNumber,
           "ActivityID": activityId,
           "RecordCreated": new Date(),
-          "CAMP_COMMUNICATION_TYPE": campaignCommunicationsType,
+          //"CAMP_COMMUNICATION_TYPE": campaignCommunicationsType,
           "JourneyID": journeyId
         }]
     },
