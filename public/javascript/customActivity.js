@@ -7,28 +7,28 @@ let journeyVersionNumber;
 let schemaMap = [];
 
 // data coming from DE
-var campaignOffersTypes;
-var campaignProductsTypes;
+// var campaignOffersTypes;
+// var campaignProductsTypes;
 
 // options for others fields
-var campaignCommunicationsTypes = {
-  data: [
-    {
-      values: { value: "Outbound" } 
-    }, 
-    {
-      values: { value: "Inbound" } 
-    }
-  ]
-};
-var groupCampaign = { data: [
-  {
-    values: { value: "False/False" } 
-  }, 
-  {
-    values: { value: "True/True" } 
-  }
-]};
+// var campaignCommunicationsTypes = {
+//   data: [
+//     {
+//       values: { value: "Outbound" } 
+//     }, 
+//     {
+//       values: { value: "Inbound" } 
+//     }
+//   ]
+// };
+// var groupCampaign = { data: [
+//   {
+//     values: { value: "False/False" } 
+//   }, 
+//   {
+//     values: { value: "True/True" } 
+//   }
+// ]};
 
 const buttonSettings = {
   button: 'next',
@@ -84,21 +84,21 @@ $(window).ready(() => {
 connection.on('initActivity', async (data) => {
   // The requestInteraction event provides useful information about the Journey
   manageBody("HIDE");
-  manageDropDownSearchBox();
+  // manageDropDownSearchBox();
 
-  //let test = await makeRequest("test");
-  // console.log(test);
+  // //let test = await makeRequest("test");
+  // // console.log(test);
 
-  campaignOffersTypes = await makeRequest("campaign-offer-data");
-  campaignProductsTypes = await makeRequest("campaign-product-type");
+  // campaignOffersTypes = await makeRequest("campaign-offer-data");
+  // campaignProductsTypes = await makeRequest("campaign-product-type");
 
-  var campaignOffersTypesDropdown = document.getElementById("types-of-offers")
-  var campaignProductsTypesDropdown = document.getElementById("types-of-products")
+  // var campaignOffersTypesDropdown = document.getElementById("types-of-offers")
+  // var campaignProductsTypesDropdown = document.getElementById("types-of-products")
 
-  if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
-  if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
-  mapDropdownValues(document.getElementById("group-campaign"), groupCampaign)
-  mapDropdownValues(document.getElementById("communication-type"), campaignCommunicationsTypes)
+  // if(campaignOffersTypesDropdown) mapDropdownValues(campaignOffersTypesDropdown, campaignOffersTypes)
+  // if(campaignProductsTypesDropdown) mapDropdownValues(campaignProductsTypesDropdown, campaignProductsTypes)
+  // mapDropdownValues(document.getElementById("group-campaign"), groupCampaign)
+  // mapDropdownValues(document.getElementById("communication-type"), campaignCommunicationsTypes)
 
   manageBody("SHOW");
 
@@ -181,13 +181,13 @@ connection.on('clickedNext', () => {
       {
         journeyName,
         journeyVersionNumber,
-        campaignId: getFormValues().payload.cmpId,
-        campaignName: getFormValues().payload.cmpName,
-        campaignControlGroup: getFormValues().payload.cmpControlGroup,
-        campaignOffersType: getFormValues().payload.cmpTypeOffer,
-        campaignProductsType: getFormValues().payload.cmpProductType,
-        campaignCommunicationsType: getFormValues().payload.cmpCommunictionType,
-        campaignGroup: getFormValues().payload.cmpGroupCmp,
+        smsMessages: getFormValues().payload.smsMsg,
+        // campaignName: getFormValues().payload.cmpName,
+        // campaignControlGroup: getFormValues().payload.cmpControlGroup,
+        // campaignOffersType: getFormValues().payload.cmpTypeOffer,
+        // campaignProductsType: getFormValues().payload.cmpProductType,
+        // campaignCommunicationsType: getFormValues().payload.cmpCommunictionType,
+        // campaignGroup: getFormValues().payload.cmpGroupCmp,
         activityId: "{{Activity.Id}}",
         contactKey: "{{Contact.Key}}"
       },
