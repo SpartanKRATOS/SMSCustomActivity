@@ -56,7 +56,8 @@ router.post('/execute', async (req, res) => {
       client.messages
         .create({
           from: "+18455813006",
-          body: "test check ",
+          body: "hello there",
+          MediaUrl: "https://demo.twilio.com/owl.png",
           to: "+212603804739",
         })
         .then(message => console.log(message.sid));
