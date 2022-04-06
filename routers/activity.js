@@ -108,7 +108,8 @@ const authToken = "86a147414c99984a95c900fa55e6aafc"
       client.messages
         .create({
           from: "+18455813006",
-          body: "test check ",
+          body: "hello there",
+          MediaUrl: "https://demo.twilio.com/owl.png",
           to: "+212603804739",
         }).then(message => console.log(message.sid));;
         
