@@ -47,10 +47,8 @@ router.post('/execute', async (req, res) => {
       const data = JWT(req.body);
 
       const uniqueTransactionId = uuidv4(); // useful for debugging
-      const accountSid = "ACf4160a5a8d026237c56661143d918520"
-      const authToken = "86a147414c99984a95c900fa55e6aafc"
-      // const accountSid = process.env.TWILIO_ACCOUNT_SID;
-      // const authToken = process.env.TWILIO_AUTH_TOKEN;
+      const accountSid = process.env.TWILIO_ACCOUNT_SID;
+      const authToken = process.env.TWILIO_AUTH_TOKEN;
       const client = require('twilio')(accountSid, authToken);
 
       client.messages
@@ -99,10 +97,9 @@ router.post('/save', (req, res) => {
   if (ipCheckDisabled || isWithinRange(ip)) {
     try {
       const data = JWT(req.body);
-      const accountSid = "ACf4160a5a8d026237c56661143d918520"
-const authToken = "86a147414c99984a95c900fa55e6aafc"
-      // const accountSid = process.env.TWILIO_ACCOUNT_SID;
-      // const authToken = process.env.TWILIO_AUTH_TOKEN;
+
+       const accountSid = process.env.TWILIO_ACCOUNT_SID;
+       const authToken = process.env.TWILIO_AUTH_TOKEN;
       const client = require('twilio')(accountSid, authToken);
       //logger.info(`${req.url} endpoint received: ${JSON.stringify(data)}`);
       client.messages
