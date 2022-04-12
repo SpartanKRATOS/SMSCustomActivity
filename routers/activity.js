@@ -45,7 +45,7 @@ router.post('/execute', async (req, res) => {
   if (ipCheckDisabled || isWithinRange(ip)) {
     try {
       const data = JWT(req.body);
-
+      const smsMessage = document.getElementById("sms-message").value;
       const uniqueTransactionId = uuidv4(); // useful for debugging
       const accountSid = process.env.TWILIO_ACCOUNT_SID;
       const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -54,7 +54,7 @@ router.post('/execute', async (req, res) => {
       client.messages
         .create({
           from: "+18455813006",
-          body: "hello there",
+          body: smsMessage,
           MediaUrl: "https://demo.twilio.com/owl.png",
           to: "+212603804739",
         })
@@ -97,7 +97,7 @@ router.post('/save', (req, res) => {
   if (ipCheckDisabled || isWithinRange(ip)) {
     try {
       const data = JWT(req.body);
-
+      const smsMessage = document.getElementById("sms-message").value;
        const accountSid = process.env.TWILIO_ACCOUNT_SID;
        const authToken = process.env.TWILIO_AUTH_TOKEN;
       const client = require('twilio')(accountSid, authToken);
@@ -105,7 +105,7 @@ router.post('/save', (req, res) => {
       client.messages
         .create({
           from: "+18455813006",
-          body: "hello there",
+          body: smsMessage,
           MediaUrl: "https://demo.twilio.com/owl.png",
           to: "+212603804739",
         }).then(message => console.log(message.sid));;
