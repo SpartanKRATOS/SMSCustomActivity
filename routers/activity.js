@@ -55,7 +55,6 @@ router.post('/execute', async (req, res) => {
         .create({
           from: "+18455813006",
           body: smsMessage,
-          MediaUrl: "https://demo.twilio.com/owl.png",
           to: "+212603804739",
         })
         .then(message => console.log(message.sid));
@@ -106,7 +105,6 @@ router.post('/save', (req, res) => {
         .create({
           from: "+18455813006",
           body: smsMessage,
-          MediaUrl: "https://demo.twilio.com/owl.png",
           to: "+212603804739",
         }).then(message => console.log(message.sid));;
         
